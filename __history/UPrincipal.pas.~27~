@@ -73,11 +73,20 @@ type
   public
     { Public declarations }
     procedure Conectar();
+    procedure EstadoBotoes(Value : integer);
   end;
 
 var
   FrmPrincipal: TFrmPrincipal;
   Config : TIniFile;
+
+const
+  BOTAO_NOVO      = 1;
+  BOTAO_INSERIR   = 2;
+  BOTAO_EXCLUIR   = 3;
+  BOTAO_CANCELAR  = 4;
+  BOTAO_CONSULTAR = 5;
+  BOTAO_PRONTO    = 6;
 
 implementation
 
@@ -117,13 +126,42 @@ begin
     on E:Exception do
     begin
       ShowMessage('Ocorreu um erro ao conectar, verifique o arquivo config.ini! ::'+E.Message);
+      Application.Terminate;
     end;
+  end;
+end;
+
+procedure TFrmPrincipal.EstadoBotoes(Value: integer);
+begin
+  case Value of
+   1 : begin
+      BtnNovo.Enabled     :=False;
+      BtnAlterar.Enabled  := True;
+      BtnAlterar.Caption  := 'Inserir';
+      BtnExcluir.Enabled  := False;
+      BtnCancelar.Enabled := True;
+   end;
+   2..4 : begin
+      BtnNovo.Enabled     := True;
+      BtnAlterar.Enabled  := False;
+      BtnExcluir.Enabled  := False;
+      BtnCancelar.Enabled := False;
+   end;
+   5 : begin
+      BtnNovo.Enabled     := False;
+      BtnAlterar.Enabled  := True;
+      BtnAlterar.Caption  := 'Alterar';
+      BtnExcluir.Enabled  := True;
+      BtnCancelar.Enabled := True;
+   end;
+
   end;
 end;
 
 procedure TFrmPrincipal.FormShow(Sender: TObject);
 begin
  Conectar;
+ EstadoBotoes(BOTAO_NOVO);
 end;
 
 end.

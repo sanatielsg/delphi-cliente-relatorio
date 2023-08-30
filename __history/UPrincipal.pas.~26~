@@ -22,7 +22,10 @@ uses
   dxSkinVisualStudio2013Light, dxSkinVS2010, dxSkinWhiteprint,
   dxSkinXmas2008Blue, Vcl.StdCtrls, cxButtons, Vcl.ExtCtrls, cxClasses,
   dxSkinsForm, cxControls, cxContainer, cxEdit, cxGroupBox, cxMaskEdit, cxLabel,
-  cxTextEdit, cxDropDownEdit, cxCalc;
+  cxTextEdit, cxDropDownEdit, cxCalc, Vcl.ComCtrls, dxCore, cxDateUtils,
+  cxCalendar,
+  System.IniFiles
+  ;
 
 type
   TFrmPrincipal = class(TForm)
@@ -62,17 +65,102 @@ type
     EdtCidade: TcxTextEdit;
     cxLabel12: TcxLabel;
     EdtUF: TcxTextEdit;
+    DteNascimento: TcxDateEdit;
+    cxLabel13: TcxLabel;
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+    procedure Conectar();
+    procedure EstadoBotoes(Value : integer);
   end;
 
 var
   FrmPrincipal: TFrmPrincipal;
+  Config : TIniFile;
+
+const
+  BOTAO_NOVO      = 1;
+  BOTAO_INSERIR   = 2;
+  BOTAO_EXCLUIR   = 3;
+  BOTAO_CANCELAR  = 4;
+  BOTAO_CONSULTAR = 5;
 
 implementation
 
 {$R *.dfm}
+
+uses UDM;
+
+{ TFrmPrincipal }
+
+procedure TFrmPrincipal.Conectar;
+ var Params : Array [0..6] of string;
+begin
+  Config := TIniFile.Create(GetCurrentDir+'\config.ini');
+  try
+    Params[0] := Config.ReadString('Banco','server','');
+    Params[1] := Config.ReadString('Banco','port','');
+    Params[2] := Config.ReadString('Banco','database','');
+    Params[3] := Config.ReadString('Banco','username','');
+    Params[4] := Config.ReadString('Banco','password','');
+    Params[5] := Config.ReadString('Banco','vendorhome','');
+    Params[6] := Config.ReadString('Banco','vendorlib','');
+  finally
+    FreeAndNil(Config);
+  end;
+
+  DM.Conn.Params.Add('Server='+Params[0]);
+  DM.Conn.Params.Add('Port='+Params[1]);
+  DM.Conn.Params.Add('Database='+Params[2]);
+  DM.Conn.Params.Add('User_Name='+Params[3]);
+  DM.Conn.Params.Add('Password='+Params[4]);
+  DM.DriverLink.VendorHome := Params[5];
+  DM.DriverLink.VendorLib := Params[6];
+
+  try
+    DM.Conn.Connected := True;
+  except
+    on E:Exception do
+    begin
+      ShowMessage('Ocorreu um erro ao conectar, verifique o arquivo config.ini! ::'+E.Message);
+      Application.Terminate;
+    end;
+  end;
+end;
+
+procedure TFrmPrincipal.EstadoBotoes(Value: integer);
+begin
+  case Value of
+   1 : begin
+      BtnNovo.Enabled     :=False;
+      BtnAlterar.Enabled  := True;
+      BtnAlterar.Caption  := 'Inserir';
+      BtnExcluir.Enabled  := False;
+      BtnCancelar.Enabled := True;
+   end;
+   2..4 : begin
+      BtnNovo.Enabled     := True;
+      BtnAlterar.Enabled  := False;
+      BtnExcluir.Enabled  := False;
+      BtnCancelar.Enabled := False;
+   end;
+   5 : begin
+      BtnNovo.Enabled     := False;
+      BtnAlterar.Enabled  := True;
+      BtnAlterar.Caption  := 'Alterar';
+      BtnExcluir.Enabled  := True;
+      BtnCancelar.Enabled := True;
+   end;
+
+  end;
+end;
+
+procedure TFrmPrincipal.FormShow(Sender: TObject);
+begin
+ Conectar;
+ EstadoBotoes(BOTAO_NOVO);
+end;
 
 end.

@@ -67,20 +67,32 @@ type
     EdtUF: TcxTextEdit;
     DteNascimento: TcxDateEdit;
     cxLabel13: TcxLabel;
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
     procedure Conectar();
+    procedure EstadoBotoes(Value : integer);
   end;
 
 var
   FrmPrincipal: TFrmPrincipal;
   Config : TIniFile;
 
+const
+  BOTAO_NOVO      = 1;
+  BOTAO_INSERIR   = 2;
+  BOTAO_EXCLUIR   = 3;
+  BOTAO_CANCELAR  = 4;
+  BOTAO_CONSULTAR = 5;
+  BOTAO_PRONTO    = 6;
+
 implementation
 
 {$R *.dfm}
+
+uses UDM;
 
 { TFrmPrincipal }
 
@@ -105,10 +117,57 @@ begin
   DM.Conn.Params.Add('Database='+Params[2]);
   DM.Conn.Params.Add('User_Name='+Params[3]);
   DM.Conn.Params.Add('Password='+Params[4]);
-  DM.FDPhysPgDriverLink.VendorHome := Params[5];
-  DM.FDPhysPgDriverLink.VendorLib := Params[6];
+  DM.DriverLink.VendorHome := Params[5];
+  DM.DriverLink.VendorLib := Params[6];
 
-  DM.Conn.Connected := True;
+  try
+    DM.Conn.Connected := True;
+  except
+    on E:Exception do
+    begin
+      ShowMessage('Ocorreu um erro ao conectar, verifique o arquivo config.ini! ::'+E.Message);
+      Application.Terminate;
+    end;
+  end;
+end;
+
+procedure TFrmPrincipal.EstadoBotoes(Value: integer);
+begin
+  case Value of
+   1 : begin
+      BtnNovo.Enabled     :=False;
+      BtnAlterar.Enabled  := True;
+      BtnAlterar.Caption  := 'Inserir';
+      BtnExcluir.Enabled  := False;
+      BtnCancelar.Enabled := True;
+   end;
+   2..4 : begin
+      BtnNovo.Enabled     := True;
+      BtnAlterar.Enabled  := False;
+      BtnExcluir.Enabled  := False;
+      BtnCancelar.Enabled := False;
+   end;
+   5 : begin
+      BtnNovo.Enabled     := False;
+      BtnAlterar.Enabled  := True;
+      BtnAlterar.Caption  := 'Alterar';
+      BtnExcluir.Enabled  := True;
+      BtnCancelar.Enabled := True;
+   end;
+   6 : begin
+      BtnNovo.Enabled     := True;
+      BtnAlterar.Enabled  := False;
+      BtnExcluir.Enabled  := False;
+      BtnCancelar.Enabled := False;
+   end;
+
+  end;
+end;
+
+procedure TFrmPrincipal.FormShow(Sender: TObject);
+begin
+ Conectar;
+ EstadoBotoes(BOTAO_PRONTO);
 end;
 
 end.

@@ -69,9 +69,6 @@ type
     cxLabel13: TcxLabel;
     procedure FormShow(Sender: TObject);
     procedure BtnNovoClick(Sender: TObject);
-    procedure BtnAlterarClick(Sender: TObject);
-    procedure BtnExcluirClick(Sender: TObject);
-    procedure BtnCancelarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -99,21 +96,6 @@ implementation
 uses UDM;
 
 { TFrmPrincipal }
-
-procedure TFrmPrincipal.BtnAlterarClick(Sender: TObject);
-begin
-  EstadoBotoes(BOTAO_INSERIR);
-end;
-
-procedure TFrmPrincipal.BtnCancelarClick(Sender: TObject);
-begin
-  EstadoBotoes(BOTAO_CANCELAR);
-end;
-
-procedure TFrmPrincipal.BtnExcluirClick(Sender: TObject);
-begin
-  EstadoBotoes(BOTAO_EXCLUIR);
-end;
 
 procedure TFrmPrincipal.BtnNovoClick(Sender: TObject);
 begin

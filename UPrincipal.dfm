@@ -37,6 +37,7 @@ object FrmPrincipal: TFrmPrincipal
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+      OnClick = BtnNovoClick
     end
     object BtnAlterar: TcxButton
       Left = 127
@@ -52,6 +53,7 @@ object FrmPrincipal: TFrmPrincipal
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+      OnClick = BtnAlterarClick
     end
     object BtnExcluir: TcxButton
       Left = 238
@@ -67,6 +69,7 @@ object FrmPrincipal: TFrmPrincipal
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+      OnClick = BtnExcluirClick
     end
     object BtnCancelar: TcxButton
       Left = 349
@@ -82,6 +85,7 @@ object FrmPrincipal: TFrmPrincipal
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+      OnClick = BtnCancelarClick
     end
     object BtnRelatorio: TcxButton
       Left = 640
