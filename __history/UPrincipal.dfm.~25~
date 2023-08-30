@@ -12,6 +12,7 @@ object FrmPrincipal: TFrmPrincipal
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Panel1: TPanel
@@ -36,6 +37,7 @@ object FrmPrincipal: TFrmPrincipal
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+      OnClick = BtnNovoClick
     end
     object BtnAlterar: TcxButton
       Left = 127
@@ -51,6 +53,7 @@ object FrmPrincipal: TFrmPrincipal
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+      OnClick = BtnAlterarClick
     end
     object BtnExcluir: TcxButton
       Left = 238
@@ -66,6 +69,7 @@ object FrmPrincipal: TFrmPrincipal
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+      OnClick = BtnExcluirClick
     end
     object BtnCancelar: TcxButton
       Left = 349
@@ -81,6 +85,7 @@ object FrmPrincipal: TFrmPrincipal
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+      OnClick = BtnCancelarClick
     end
     object BtnRelatorio: TcxButton
       Left = 640
@@ -131,7 +136,7 @@ object FrmPrincipal: TFrmPrincipal
       TabOrder = 0
       Height = 154
       Width = 354
-      object cxTextEdit1: TcxTextEdit
+      object EdtNome: TcxTextEdit
         Left = 8
         Top = 33
         TabOrder = 0
@@ -142,7 +147,7 @@ object FrmPrincipal: TFrmPrincipal
         Top = 18
         Caption = 'Nome completo'
       end
-      object cxMaskEdit1: TcxMaskEdit
+      object MskCPF: TcxMaskEdit
         Left = 8
         Top = 74
         Properties.EditMask = '999.999.999-99'
@@ -160,11 +165,22 @@ object FrmPrincipal: TFrmPrincipal
         Top = 58
         Caption = 'Registro Geral'
       end
-      object cxTextEdit2: TcxTextEdit
+      object EdtRG: TcxTextEdit
         Left = 174
         Top = 73
         TabOrder = 5
         Width = 171
+      end
+      object DteNascimento: TcxDateEdit
+        Left = 8
+        Top = 118
+        TabOrder = 6
+        Width = 121
+      end
+      object cxLabel13: TcxLabel
+        Left = 8
+        Top = 101
+        Caption = 'Nascimento'
       end
     end
     object cxGroupBox2: TcxGroupBox
@@ -179,7 +195,7 @@ object FrmPrincipal: TFrmPrincipal
         Top = 18
         Caption = 'Raz'#227'o Social'
       end
-      object cxTextEdit3: TcxTextEdit
+      object EdtRazaoSocial: TcxTextEdit
         Left = 5
         Top = 33
         TabOrder = 1
@@ -190,7 +206,7 @@ object FrmPrincipal: TFrmPrincipal
         Top = 58
         Caption = 'Nome Fantasia'
       end
-      object cxTextEdit4: TcxTextEdit
+      object EdtNomeFantasia: TcxTextEdit
         Left = 5
         Top = 73
         TabOrder = 3
@@ -201,7 +217,7 @@ object FrmPrincipal: TFrmPrincipal
         Top = 98
         Caption = 'CNPJ'
       end
-      object cxMaskEdit2: TcxMaskEdit
+      object MskCNPJ: TcxMaskEdit
         Left = 5
         Top = 114
         Properties.EditMask = '99.999.999/999-99'
@@ -222,7 +238,7 @@ object FrmPrincipal: TFrmPrincipal
         Top = 18
         Caption = 'Endere'#231'o'
       end
-      object cxTextEdit5: TcxTextEdit
+      object EdtEndereco: TcxTextEdit
         Left = 8
         Top = 33
         TabOrder = 1
@@ -233,7 +249,7 @@ object FrmPrincipal: TFrmPrincipal
         Top = 59
         Caption = 'N'#250'mero'
       end
-      object cxTextEdit6: TcxTextEdit
+      object EdtNumero: TcxTextEdit
         Left = 8
         Top = 73
         TabOrder = 3
@@ -244,7 +260,7 @@ object FrmPrincipal: TFrmPrincipal
         Top = 59
         Caption = 'CEP'
       end
-      object cxMaskEdit3: TcxMaskEdit
+      object MskCEP: TcxMaskEdit
         Left = 76
         Top = 73
         Properties.EditMask = '99.999-999'
@@ -257,7 +273,7 @@ object FrmPrincipal: TFrmPrincipal
         Top = 59
         Caption = 'Cidade'
       end
-      object cxTextEdit7: TcxTextEdit
+      object EdtCidade: TcxTextEdit
         Left = 202
         Top = 73
         TabOrder = 7
@@ -268,7 +284,7 @@ object FrmPrincipal: TFrmPrincipal
         Top = 59
         Caption = 'UF'
       end
-      object cxTextEdit8: TcxTextEdit
+      object EdtUF: TcxTextEdit
         Left = 308
         Top = 73
         TabOrder = 9
@@ -287,7 +303,7 @@ object FrmPrincipal: TFrmPrincipal
         Top = 19
         Caption = 'Limite de Cr'#233'dito'
       end
-      object cxCalcEdit1: TcxCalcEdit
+      object ClcLimiteCredito: TcxCalcEdit
         Left = 11
         Top = 39
         EditValue = 0.000000000000000000

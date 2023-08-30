@@ -24,7 +24,7 @@ uses
   dxSkinsForm, cxControls, cxContainer, cxEdit, cxGroupBox, cxMaskEdit, cxLabel,
   cxTextEdit, cxDropDownEdit, cxCalc, Vcl.ComCtrls, dxCore, cxDateUtils,
   cxCalendar,
-  System.IniFiles
+  System.IniFiles, cxSpinEdit, cxDBEdit, UDM
   ;
 
 type
@@ -67,6 +67,7 @@ type
     EdtUF: TcxTextEdit;
     DteNascimento: TcxDateEdit;
     cxLabel13: TcxLabel;
+    SpnCodigo: TcxSpinEdit;
     procedure FormShow(Sender: TObject);
     procedure BtnNovoClick(Sender: TObject);
     procedure BtnAlterarClick(Sender: TObject);
@@ -78,6 +79,8 @@ type
     { Public declarations }
     procedure Conectar();
     procedure EstadoBotoes(Value : integer);
+    function ClienteToForm(Value : TCliente): Boolean;
+    function FormToCliente(): TCliente;
   end;
 
 var
@@ -95,8 +98,6 @@ const
 implementation
 
 {$R *.dfm}
-
-uses UDM;
 
 { TFrmPrincipal }
 
@@ -118,6 +119,30 @@ end;
 procedure TFrmPrincipal.BtnNovoClick(Sender: TObject);
 begin
   EstadoBotoes(BOTAO_NOVO);
+end;
+
+function TFrmPrincipal.ClienteToForm(Value : TCliente): Boolean;
+begin
+  if Value <> Nil then
+  begin
+    with Value do
+    begin
+      EdtNome.Text          := Nome;
+      MskCPF.Text           := CPF;
+      EdtRG.Text            := RG;
+      DteNascimento.Date    := DataNascimento;
+      EdtRazaoSocial.Text   := RazaoSocial;
+      EdtNomeFantasia.Text  := NomeFantasia;
+      MskCNPJ.Text          := CNPJ;
+      EdtEndereco.Text      := Endereco;
+      EdtNumero.Text        := Numero;
+      MskCEP.Text           := CEP;
+      EdtCidade.Text        := Cidade;
+      EdtUF.Text            := UF;
+      ClcLimiteCredito.Text := FloatToStr(LimiteCredito);
+    end;
+    Result := True;
+  end else Result :=False;
 end;
 
 procedure TFrmPrincipal.Conectar;
@@ -192,6 +217,31 @@ procedure TFrmPrincipal.FormShow(Sender: TObject);
 begin
  Conectar;
  EstadoBotoes(BOTAO_PRONTO);
+ SpnCodigo.SetFocus;
+end;
+
+function TFrmPrincipal.FormToCliente: TCliente;
+  var Cliente :TCliente;
+begin
+  Result := Nil;
+  Cliente := TCliente.Create;
+  with Cliente do
+  begin
+    Nome                      := EdtNome.Text;
+    CPF                       := MskCPF.Text;
+    RG                        := EdtRG.Text;
+    DataNascimento            := DteNascimento.Date;
+    RazaoSocial               := EdtRazaoSocial.Text;
+    NomeFantasia              := EdtNomeFantasia.Text;
+    CNPJ                      := MskCNPJ.Text;
+    Endereco                  := EdtEndereco.Text;
+    Numero                    := EdtNumero.Text;
+    CEP                       := MskCEP.Text;
+    Cidade                    := EdtCidade.Text;
+    UF                        := EdtUF.Text;
+    FloatToStr(LimiteCredito) := ClcLimiteCredito.Text;
+  end;
+  Result := Cliente;
 end;
 
 end.

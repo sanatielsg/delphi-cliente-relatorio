@@ -24,10 +24,10 @@ object FrmPrincipal: TFrmPrincipal
     BevelOuter = bvNone
     TabOrder = 0
     object BtnNovo: TcxButton
-      Left = 16
-      Top = 13
-      Width = 105
-      Height = 76
+      Left = 154
+      Top = 18
+      Width = 90
+      Height = 60
       Caption = 'Novo'
       Enabled = False
       TabOrder = 0
@@ -40,10 +40,10 @@ object FrmPrincipal: TFrmPrincipal
       OnClick = BtnNovoClick
     end
     object BtnAlterar: TcxButton
-      Left = 127
-      Top = 13
-      Width = 105
-      Height = 76
+      Left = 250
+      Top = 18
+      Width = 90
+      Height = 60
       Caption = 'Inserir'
       Enabled = False
       TabOrder = 1
@@ -56,10 +56,10 @@ object FrmPrincipal: TFrmPrincipal
       OnClick = BtnAlterarClick
     end
     object BtnExcluir: TcxButton
-      Left = 238
-      Top = 13
-      Width = 105
-      Height = 76
+      Left = 346
+      Top = 18
+      Width = 90
+      Height = 60
       Caption = 'Excluir'
       Enabled = False
       TabOrder = 2
@@ -72,10 +72,10 @@ object FrmPrincipal: TFrmPrincipal
       OnClick = BtnExcluirClick
     end
     object BtnCancelar: TcxButton
-      Left = 349
-      Top = 13
-      Width = 105
-      Height = 76
+      Left = 442
+      Top = 18
+      Width = 90
+      Height = 60
       Caption = 'Cancelar'
       Enabled = False
       TabOrder = 3
@@ -88,10 +88,10 @@ object FrmPrincipal: TFrmPrincipal
       OnClick = BtnCancelarClick
     end
     object BtnRelatorio: TcxButton
-      Left = 640
-      Top = 13
-      Width = 105
-      Height = 76
+      Left = 658
+      Top = 18
+      Width = 90
+      Height = 60
       Caption = 'Relat'#243'rio'
       TabOrder = 4
       Font.Charset = DEFAULT_CHARSET
@@ -102,10 +102,10 @@ object FrmPrincipal: TFrmPrincipal
       ParentFont = False
     end
     object BtnPesquisa: TcxButton
-      Left = 529
-      Top = 13
-      Width = 105
-      Height = 76
+      Left = 562
+      Top = 18
+      Width = 90
+      Height = 60
       Caption = 'Pesquisa'
       TabOrder = 5
       Font.Charset = DEFAULT_CHARSET
@@ -114,6 +114,21 @@ object FrmPrincipal: TFrmPrincipal
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+    end
+    object SpnCodigo: TcxSpinEdit
+      Left = 9
+      Top = 30
+      ParentFont = False
+      Properties.MinValue = 1.000000000000000000
+      Style.Font.Charset = DEFAULT_CHARSET
+      Style.Font.Color = clWindowText
+      Style.Font.Height = -24
+      Style.Font.Name = 'Tahoma'
+      Style.Font.Style = []
+      Style.IsFontAssigned = True
+      TabOrder = 6
+      Value = 1
+      Width = 121
     end
   end
   object Panel2: TPanel

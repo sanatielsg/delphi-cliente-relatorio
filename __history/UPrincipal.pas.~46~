@@ -24,7 +24,7 @@ uses
   dxSkinsForm, cxControls, cxContainer, cxEdit, cxGroupBox, cxMaskEdit, cxLabel,
   cxTextEdit, cxDropDownEdit, cxCalc, Vcl.ComCtrls, dxCore, cxDateUtils,
   cxCalendar,
-  System.IniFiles
+  System.IniFiles, cxSpinEdit, cxDBEdit, UDM
   ;
 
 type
@@ -67,12 +67,20 @@ type
     EdtUF: TcxTextEdit;
     DteNascimento: TcxDateEdit;
     cxLabel13: TcxLabel;
+    SpnCodigo: TcxSpinEdit;
     procedure FormShow(Sender: TObject);
+    procedure BtnNovoClick(Sender: TObject);
+    procedure BtnAlterarClick(Sender: TObject);
+    procedure BtnExcluirClick(Sender: TObject);
+    procedure BtnCancelarClick(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
     procedure Conectar();
+    procedure EstadoBotoes(Value : integer);
+    function ClienteToForm(Value : TCliente): Boolean;
+    function FormToCliente(): Boolean;
   end;
 
 var
@@ -85,14 +93,48 @@ const
   BOTAO_EXCLUIR   = 3;
   BOTAO_CANCELAR  = 4;
   BOTAO_CONSULTAR = 5;
+  BOTAO_PRONTO    = 6;
 
 implementation
 
 {$R *.dfm}
 
-uses UDM;
-
 { TFrmPrincipal }
+
+procedure TFrmPrincipal.BtnAlterarClick(Sender: TObject);
+begin
+  EstadoBotoes(BOTAO_INSERIR);
+end;
+
+procedure TFrmPrincipal.BtnCancelarClick(Sender: TObject);
+begin
+  EstadoBotoes(BOTAO_CANCELAR);
+end;
+
+procedure TFrmPrincipal.BtnExcluirClick(Sender: TObject);
+begin
+  EstadoBotoes(BOTAO_EXCLUIR);
+end;
+
+procedure TFrmPrincipal.BtnNovoClick(Sender: TObject);
+begin
+  EstadoBotoes(BOTAO_NOVO);
+end;
+
+function TFrmPrincipal.ClienteToForm(Value : TCliente): Boolean;
+begin
+  if Value <> Nil then
+  begin
+    with Value do
+    begin
+      EdtNome.Text := Nome;
+      MskCPF.Text  := CPF;
+
+
+    end;
+    Result := True;
+  end else Result :=False;
+end;
 
 procedure TFrmPrincipal.Conectar;
  var Params : Array [0..6] of string;
@@ -129,9 +171,49 @@ begin
   end;
 end;
 
+procedure TFrmPrincipal.EstadoBotoes(Value: integer);
+begin
+  case Value of
+   1 : begin
+      BtnNovo.Enabled     :=False;
+      BtnAlterar.Enabled  := True;
+      BtnAlterar.Caption  := 'Inserir';
+      BtnExcluir.Enabled  := False;
+      BtnCancelar.Enabled := True;
+   end;
+   2..4 : begin
+      BtnNovo.Enabled     := True;
+      BtnAlterar.Enabled  := False;
+      BtnExcluir.Enabled  := False;
+      BtnCancelar.Enabled := False;
+   end;
+   5 : begin
+      BtnNovo.Enabled     := False;
+      BtnAlterar.Enabled  := True;
+      BtnAlterar.Caption  := 'Alterar';
+      BtnExcluir.Enabled  := True;
+      BtnCancelar.Enabled := True;
+   end;
+   6 : begin
+      BtnNovo.Enabled     := True;
+      BtnAlterar.Enabled  := False;
+      BtnExcluir.Enabled  := False;
+      BtnCancelar.Enabled := False;
+   end;
+
+  end;
+end;
+
 procedure TFrmPrincipal.FormShow(Sender: TObject);
 begin
  Conectar;
+ EstadoBotoes(BOTAO_PRONTO);
+ SpnCodigo.SetFocus;
+end;
+
+function TFrmPrincipal.FormToCliente: Boolean;
+begin
+
 end;
 
 end.
