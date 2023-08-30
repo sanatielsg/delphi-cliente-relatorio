@@ -117,7 +117,7 @@ object FrmPrincipal: TFrmPrincipal
     end
     object SpnCodigo: TcxSpinEdit
       Left = 9
-      Top = 30
+      Top = 32
       ParentFont = False
       Properties.MinValue = 1.000000000000000000
       Style.Font.Charset = DEFAULT_CHARSET
@@ -128,6 +128,7 @@ object FrmPrincipal: TFrmPrincipal
       Style.IsFontAssigned = True
       TabOrder = 6
       Value = 1
+      OnExit = SpnCodigoExit
       Width = 121
     end
   end

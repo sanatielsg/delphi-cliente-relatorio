@@ -80,7 +80,7 @@ type
     procedure Conectar();
     procedure EstadoBotoes(Value : integer);
     function ClienteToForm(Value : TCliente): Boolean;
-    function FormToCliente(): Boolean;
+    function FormToCliente(): TCliente;
   end;
 
 var
@@ -127,10 +127,19 @@ begin
   begin
     with Value do
     begin
-      EdtNome.Text := Nome;
-      MskCPF.Text  := CPF;
-
-
+      EdtNome.Text          := Nome;
+      MskCPF.Text           := CPF;
+      EdtRG.Text            := RG;
+      DteNascimento.Date    := DataNascimento;
+      EdtRazaoSocial.Text   := RazaoSocial;
+      EdtNomeFantasia.Text  := NomeFantasia;
+      MskCNPJ.Text          := CNPJ;
+      EdtEndereco.Text      := Endereco;
+      EdtNumero.Text        := Numero;
+      MskCEP.Text           := CEP;
+      EdtCidade.Text        := Cidade;
+      EdtUF.Text            := UF;
+      ClcLimiteCredito.Text := FloatToStr(LimiteCredito);
     end;
     Result := True;
   end else Result :=False;
@@ -211,9 +220,28 @@ begin
  SpnCodigo.SetFocus;
 end;
 
-function TFrmPrincipal.FormToCliente: Boolean;
+function TFrmPrincipal.FormToCliente: TCliente;
+  var Cliente :TCliente;
 begin
-
+  Result := Nil;
+  Cliente := TCliente.Create;
+  with Cliente do
+  begin
+    Nome                      := EdtNome.Text;
+    CPF                       := MskCPF.Text;
+    RG                        := EdtRG.Text;
+    DataNascimento            := DteNascimento.Date;
+    RazaoSocial               := EdtRazaoSocial.Text;
+    NomeFantasia              := EdtNomeFantasia.Text;
+    CNPJ                      := MskCNPJ.Text;
+    Endereco                  := EdtEndereco.Text;
+    Numero                    := EdtNumero.Text;
+    CEP                       := MskCEP.Text;
+    Cidade                    := EdtCidade.Text;
+    UF                        := EdtUF.Text;
+    FloatToStr(LimiteCredito) := ClcLimiteCredito.Text;
+  end;
+  Result := Cliente;
 end;
 
 end.

@@ -73,6 +73,7 @@ type
     procedure BtnAlterarClick(Sender: TObject);
     procedure BtnExcluirClick(Sender: TObject);
     procedure BtnCancelarClick(Sender: TObject);
+    procedure SpnCodigoExit(Sender: TObject);
   private
     { Private declarations }
   public
@@ -80,7 +81,8 @@ type
     procedure Conectar();
     procedure EstadoBotoes(Value : integer);
     function ClienteToForm(Value : TCliente): Boolean;
-    function FormToCliente(): Boolean;
+    function FormToCliente(): TCliente;
+    procedure ConsultarCliente;
   end;
 
 var
@@ -127,12 +129,19 @@ begin
   begin
     with Value do
     begin
-      EdtNome.Text := Nome;
-      MskCPF.Text  := CPF;
-      EdtRG.Text   := RG;
-
-
-
+      EdtNome.Text          := Nome;
+      MskCPF.Text           := CPF;
+      EdtRG.Text            := RG;
+      DteNascimento.Date    := DataNascimento;
+      EdtRazaoSocial.Text   := RazaoSocial;
+      EdtNomeFantasia.Text  := NomeFantasia;
+      MskCNPJ.Text          := CNPJ;
+      EdtEndereco.Text      := Endereco;
+      EdtNumero.Text        := Numero;
+      MskCEP.Text           := CEP;
+      EdtCidade.Text        := Cidade;
+      EdtUF.Text            := UF;
+      ClcLimiteCredito.Text := FloatToStr(LimiteCredito);
     end;
     Result := True;
   end else Result :=False;
@@ -170,6 +179,19 @@ begin
       ShowMessage('Ocorreu um erro ao conectar, verifique o arquivo config.ini! ::'+E.Message);
       Application.Terminate;
     end;
+  end;
+end;
+
+procedure TFrmPrincipal.ConsultarCliente;
+ var Cliente : TCliente;
+begin
+  Cliente := Nil;
+  try
+    Cliente := DM.GetCliente(StrToInt(SpnCodigo.Value));
+
+
+  finally
+    FreeAndNil(Cliente);
   end;
 end;
 
@@ -213,9 +235,33 @@ begin
  SpnCodigo.SetFocus;
 end;
 
-function TFrmPrincipal.FormToCliente: Boolean;
+function TFrmPrincipal.FormToCliente: TCliente;
+  var Cliente :TCliente;
 begin
+  Result := Nil;
+  Cliente := TCliente.Create;
+  with Cliente do
+  begin
+    Nome                      := EdtNome.Text;
+    CPF                       := MskCPF.Text;
+    RG                        := EdtRG.Text;
+    DataNascimento            := DteNascimento.Date;
+    RazaoSocial               := EdtRazaoSocial.Text;
+    NomeFantasia              := EdtNomeFantasia.Text;
+    CNPJ                      := MskCNPJ.Text;
+    Endereco                  := EdtEndereco.Text;
+    Numero                    := EdtNumero.Text;
+    CEP                       := MskCEP.Text;
+    Cidade                    := EdtCidade.Text;
+    UF                        := EdtUF.Text;
+    FloatToStr(LimiteCredito) := ClcLimiteCredito.Text;
+  end;
+  Result := Cliente;
+end;
 
+procedure TFrmPrincipal.SpnCodigoExit(Sender: TObject);
+begin
+  ConsultarCliente();
 end;
 
 end.

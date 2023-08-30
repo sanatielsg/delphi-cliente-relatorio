@@ -19,6 +19,7 @@ type
       FCPF           : string;
       FRG            : string;
       FCNPJ          : string;
+      FTipoPessoa    :  integer;
       FEndereco      : string;
       FNumero        : string;
       FCEP           : string;
@@ -35,6 +36,7 @@ type
       property CPF             : string read  FCPF            write FCPF           ;
       property RG              : string read  FRG             write FRG            ;
       property CNPJ            : string read  FCNPJ           write FCNPJ          ;
+      property TipoPessoa      : integer read FTipoPessoa     write FTipoPessoa    ;
       property Endereco        : string read  FEndereco       write FEndereco      ;
       property Numero          : string read  FNumero         write FNumero        ;
       property CEP             : string read  FCEP            write FCEP           ;
@@ -70,11 +72,14 @@ type
     QryClientescli_nome_fantasia: TWideStringField;
     QryClientescli_data_nascimento: TDateField;
     QryClientescli_dthr_cadastro: TSQLTimeStampField;
+
+
+
+
   private
     { Private declarations }
   public
     { Public declarations }
-    function GetCliente(Value: Integer): TCliente;
   end;
 
 var
@@ -85,46 +90,5 @@ implementation
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
 {$R *.dfm}
-
-{ TDM }
-
-function TDM.GetCliente(Value: Integer): TCliente;
-  var sqlTmp : string;
-      Cliente : TCliente;
-begin
-  Cliente := Nil;
-  sqlTmp := 'select * from cliente where cli_codigo = :cli_codigo ';
-
-  with Query do
-  begin
-    Close;
-    SQL.Clear;
-    SQL.Add(sqlTmp);
-    ParamByName('cli_codigo').AsInteger := Value;
-    Open();
-    if RecordCount > 0 then
-    begin
-      Cliente := TCliente.Create;
-      with Cliente do
-      begin
-        Codigo         := FieldByName('cli_codigo').AsInteger;
-        Nome           := FieldByName('cli_nome').AsString;
-        CPF            := FieldByName('cli_cpf').AsString;
-        RG             := FieldByName('cli_rg').AsString;
-        DataNascimento := FieldByName('cli_data_nascimento').AsDateTime;
-        RazaoSocial    := FieldByName('cli_razao_social').AsString;
-        NomeFantasia   := FieldByName('cli_nome_fantasia').AsString;
-        CNPJ           := FieldByName('cli_cnpj').AsString;
-        Endereco       := FieldByName('cli_endereco').AsString;
-        Numero         := FieldByName('cli_numero').AsString;
-        CEP            := FieldByName('cli_cep').AsString;
-        Cidade         := FieldByName('cli_cidade').AsString;
-        UF             := FieldByName('cli_uf').AsString;
-        LimiteCredito  := FieldByName('cli_limite_credito').AsFloat;
-      end;
-    end;
-  end;
-  Result := Cliente;
-end;
 
 end.

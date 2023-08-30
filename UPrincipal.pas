@@ -73,6 +73,7 @@ type
     procedure BtnAlterarClick(Sender: TObject);
     procedure BtnExcluirClick(Sender: TObject);
     procedure BtnCancelarClick(Sender: TObject);
+    procedure SpnCodigoExit(Sender: TObject);
   private
     { Private declarations }
   public
@@ -81,6 +82,7 @@ type
     procedure EstadoBotoes(Value : integer);
     function ClienteToForm(Value : TCliente): Boolean;
     function FormToCliente(): TCliente;
+    procedure ConsultarCliente;
   end;
 
 var
@@ -180,6 +182,21 @@ begin
   end;
 end;
 
+procedure TFrmPrincipal.ConsultarCliente;
+ var Cliente : TCliente;
+begin
+  Cliente := Nil;
+  try
+    Cliente := DM.GetCliente(StrToInt(SpnCodigo.Value));
+    if Cliente <> Nil then
+    begin
+      ClienteToForm(Cliente);
+    end;
+  finally
+    FreeAndNil(Cliente);
+  end;
+end;
+
 procedure TFrmPrincipal.EstadoBotoes(Value: integer);
 begin
   case Value of
@@ -239,9 +256,14 @@ begin
     CEP                       := MskCEP.Text;
     Cidade                    := EdtCidade.Text;
     UF                        := EdtUF.Text;
-    FloatToStr(LimiteCredito) := ClcLimiteCredito.Text;
+    LimiteCredito             := StrToFloat(ClcLimiteCredito.Text);
   end;
   Result := Cliente;
+end;
+
+procedure TFrmPrincipal.SpnCodigoExit(Sender: TObject);
+begin
+  ConsultarCliente();
 end;
 
 end.
