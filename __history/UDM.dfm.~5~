@@ -4,8 +4,11 @@ object DM: TDM
   Width = 627
   object Conn: TFDConnection
     Params.Strings = (
-      'Port='
+      'Database=programa'
+      'User_Name=postgres'
+      'Password=Super@321'
       'DriverID=PG')
+    Connected = True
     Left = 40
     Top = 56
   end

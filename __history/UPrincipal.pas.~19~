@@ -117,7 +117,6 @@ begin
     on E:Exception do
     begin
       ShowMessage('Ocorreu um erro ao conectar, verifique o arquivo config.ini! ::'+E.Message);
-      Application.Terminate;
     end;
   end;
 end;
