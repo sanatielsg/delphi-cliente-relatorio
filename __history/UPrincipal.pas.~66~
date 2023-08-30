@@ -83,6 +83,8 @@ type
     function ClienteToForm(Value : TCliente): Boolean;
     function FormToCliente(): TCliente;
     procedure ConsultarCliente;
+    procedure AlterarOuInserir;
+    procedure ResetarForm;
   end;
 
 var
@@ -103,14 +105,21 @@ implementation
 
 { TFrmPrincipal }
 
+procedure TFrmPrincipal.AlterarOuInserir;
+begin
+
+end;
+
 procedure TFrmPrincipal.BtnAlterarClick(Sender: TObject);
 begin
   EstadoBotoes(BOTAO_INSERIR);
+  AlterarOuInserir();
 end;
 
 procedure TFrmPrincipal.BtnCancelarClick(Sender: TObject);
 begin
   EstadoBotoes(BOTAO_CANCELAR);
+  ResetarForm;
 end;
 
 procedure TFrmPrincipal.BtnExcluirClick(Sender: TObject);
@@ -188,8 +197,11 @@ begin
   Cliente := Nil;
   try
     Cliente := DM.GetCliente(StrToInt(SpnCodigo.Value));
-
-
+    if Cliente <> Nil then
+    begin
+      ClienteToForm(Cliente);
+      EstadoBotoes(BOTAO_CONSULTAR);
+    end;
   finally
     FreeAndNil(Cliente);
   end;
@@ -254,13 +266,33 @@ begin
     CEP                       := MskCEP.Text;
     Cidade                    := EdtCidade.Text;
     UF                        := EdtUF.Text;
-    FloatToStr(LimiteCredito) := ClcLimiteCredito.Text;
+    LimiteCredito             := StrToFloat(ClcLimiteCredito.Text);
   end;
   Result := Cliente;
 end;
 
+procedure TFrmPrincipal.ResetarForm;
+begin
+  EdtNome.Text         := '';
+  MskCPF.Text          := '';
+  EdtRG.Text           := '';
+  DteNascimento.Text   := '';
+  EdtRazaoSocial.Text  := '';
+  EdtNomeFantasia.Text := '';
+  MskCNPJ.Text         := '';
+  EdtEndereco.Text     := '';
+  EdtNumero.Text       := '';
+  MskCEP.Text          := '';
+  EdtCidade.Text       := '';
+  EdtUF.Text           := '';
+  ClcLimiteCredito.Value := 0.0;
+  SpnCodigo.SelectAll;
+  SpnCodigo.SetFocus;
+end;
+
 procedure TFrmPrincipal.SpnCodigoExit(Sender: TObject);
 begin
+  ResetarForm;
   ConsultarCliente();
 end;
 

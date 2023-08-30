@@ -74,6 +74,8 @@ type
     procedure BtnExcluirClick(Sender: TObject);
     procedure BtnCancelarClick(Sender: TObject);
     procedure SpnCodigoExit(Sender: TObject);
+    procedure SpnCodigoEnter(Sender: TObject);
+    procedure SpnCodigoPropertiesChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -120,6 +122,8 @@ procedure TFrmPrincipal.BtnCancelarClick(Sender: TObject);
 begin
   EstadoBotoes(BOTAO_CANCELAR);
   ResetarForm;
+  SpnCodigo.Text := '1';
+  SpnCodigo.SetFocus;
 end;
 
 procedure TFrmPrincipal.BtnExcluirClick(Sender: TObject);
@@ -201,6 +205,9 @@ begin
     begin
       ClienteToForm(Cliente);
       EstadoBotoes(BOTAO_CONSULTAR);
+    end else
+    begin
+      EstadoBotoes(BOTAO_CANCELAR);
     end;
   finally
     FreeAndNil(Cliente);
@@ -273,13 +280,33 @@ end;
 
 procedure TFrmPrincipal.ResetarForm;
 begin
-  EdtNome.Text := '';
-  MskCPF.Text  := '';
-  EdtRG.Text   := '';
-  DteNascimento.Text := '';
+  EdtNome.Text         := '';
+  MskCPF.Text          := '';
+  EdtRG.Text           := '';
+  DteNascimento.Text   := '';
+  EdtRazaoSocial.Text  := '';
+  EdtNomeFantasia.Text := '';
+  MskCNPJ.Text         := '';
+  EdtEndereco.Text     := '';
+  EdtNumero.Text       := '';
+  MskCEP.Text          := '';
+  EdtCidade.Text       := '';
+  EdtUF.Text           := '';
+  ClcLimiteCredito.Value := 0.0;
+end;
+
+procedure TFrmPrincipal.SpnCodigoEnter(Sender: TObject);
+begin
+  ResetarForm;
 end;
 
 procedure TFrmPrincipal.SpnCodigoExit(Sender: TObject);
+begin
+  ResetarForm;
+  ConsultarCliente();
+end;
+
+procedure TFrmPrincipal.SpnCodigoPropertiesChange(Sender: TObject);
 begin
   ConsultarCliente();
 end;

@@ -120,6 +120,7 @@ object FrmPrincipal: TFrmPrincipal
       Top = 32
       ParentFont = False
       Properties.MinValue = 1.000000000000000000
+      Properties.OnChange = SpnCodigoPropertiesChange
       Style.Font.Charset = DEFAULT_CHARSET
       Style.Font.Color = clWindowText
       Style.Font.Height = -24
@@ -128,6 +129,7 @@ object FrmPrincipal: TFrmPrincipal
       Style.IsFontAssigned = True
       TabOrder = 6
       Value = 1
+      OnEnter = SpnCodigoEnter
       OnExit = SpnCodigoExit
       Width = 121
     end

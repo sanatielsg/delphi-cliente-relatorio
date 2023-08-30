@@ -119,6 +119,7 @@ end;
 procedure TFrmPrincipal.BtnCancelarClick(Sender: TObject);
 begin
   EstadoBotoes(BOTAO_CANCELAR);
+  ResetarForm;
 end;
 
 procedure TFrmPrincipal.BtnExcluirClick(Sender: TObject);
@@ -200,6 +201,9 @@ begin
     begin
       ClienteToForm(Cliente);
       EstadoBotoes(BOTAO_CONSULTAR);
+    end else
+    begin
+      EstadoBotoes(BOTAO_CANCELAR);
     end;
   finally
     FreeAndNil(Cliente);
@@ -272,14 +276,24 @@ end;
 
 procedure TFrmPrincipal.ResetarForm;
 begin
-  EdtNome.Text := '';
-  MskCPF.Text  := '';
-  EdtRG.Text   := ''
-
+  EdtNome.Text         := '';
+  MskCPF.Text          := '';
+  EdtRG.Text           := '';
+  DteNascimento.Text   := '';
+  EdtRazaoSocial.Text  := '';
+  EdtNomeFantasia.Text := '';
+  MskCNPJ.Text         := '';
+  EdtEndereco.Text     := '';
+  EdtNumero.Text       := '';
+  MskCEP.Text          := '';
+  EdtCidade.Text       := '';
+  EdtUF.Text           := '';
+  ClcLimiteCredito.Value := 0.0;
 end;
 
 procedure TFrmPrincipal.SpnCodigoExit(Sender: TObject);
 begin
+  ResetarForm;
   ConsultarCliente();
 end;
 

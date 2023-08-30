@@ -74,6 +74,7 @@ type
     procedure BtnExcluirClick(Sender: TObject);
     procedure BtnCancelarClick(Sender: TObject);
     procedure SpnCodigoExit(Sender: TObject);
+    procedure SpnCodigoEnter(Sender: TObject);
   private
     { Private declarations }
   public
@@ -83,6 +84,8 @@ type
     function ClienteToForm(Value : TCliente): Boolean;
     function FormToCliente(): TCliente;
     procedure ConsultarCliente;
+    procedure AlterarOuInserir;
+    procedure ResetarForm;
   end;
 
 var
@@ -103,14 +106,23 @@ implementation
 
 { TFrmPrincipal }
 
+procedure TFrmPrincipal.AlterarOuInserir;
+begin
+
+end;
+
 procedure TFrmPrincipal.BtnAlterarClick(Sender: TObject);
 begin
   EstadoBotoes(BOTAO_INSERIR);
+  AlterarOuInserir();
 end;
 
 procedure TFrmPrincipal.BtnCancelarClick(Sender: TObject);
 begin
   EstadoBotoes(BOTAO_CANCELAR);
+  ResetarForm;
+  SpnCodigo.Text := '1';
+  SpnCodigo.SetFocus;
 end;
 
 procedure TFrmPrincipal.BtnExcluirClick(Sender: TObject);
@@ -191,6 +203,10 @@ begin
     if Cliente <> Nil then
     begin
       ClienteToForm(Cliente);
+      EstadoBotoes(BOTAO_CONSULTAR);
+    end else
+    begin
+      EstadoBotoes(BOTAO_CANCELAR);
     end;
   finally
     FreeAndNil(Cliente);
@@ -261,8 +277,31 @@ begin
   Result := Cliente;
 end;
 
+procedure TFrmPrincipal.ResetarForm;
+begin
+  EdtNome.Text         := '';
+  MskCPF.Text          := '';
+  EdtRG.Text           := '';
+  DteNascimento.Text   := '';
+  EdtRazaoSocial.Text  := '';
+  EdtNomeFantasia.Text := '';
+  MskCNPJ.Text         := '';
+  EdtEndereco.Text     := '';
+  EdtNumero.Text       := '';
+  MskCEP.Text          := '';
+  EdtCidade.Text       := '';
+  EdtUF.Text           := '';
+  ClcLimiteCredito.Value := 0.0;
+end;
+
+procedure TFrmPrincipal.SpnCodigoEnter(Sender: TObject);
+begin
+  ResetarForm;
+end;
+
 procedure TFrmPrincipal.SpnCodigoExit(Sender: TObject);
 begin
+  ResetarForm;
   ConsultarCliente();
 end;
 
