@@ -83,6 +83,8 @@ type
     function ClienteToForm(Value : TCliente): Boolean;
     function FormToCliente(): TCliente;
     procedure ConsultarCliente;
+    procedure AlterarOuInserir;
+    procedure ResetarForm;
   end;
 
 var
@@ -103,14 +105,21 @@ implementation
 
 { TFrmPrincipal }
 
+procedure TFrmPrincipal.AlterarOuInserir;
+begin
+
+end;
+
 procedure TFrmPrincipal.BtnAlterarClick(Sender: TObject);
 begin
   EstadoBotoes(BOTAO_INSERIR);
+  AlterarOuInserir();
 end;
 
 procedure TFrmPrincipal.BtnCancelarClick(Sender: TObject);
 begin
   EstadoBotoes(BOTAO_CANCELAR);
+  ResetarForm;
 end;
 
 procedure TFrmPrincipal.BtnExcluirClick(Sender: TObject);
@@ -191,6 +200,7 @@ begin
     if Cliente <> Nil then
     begin
       ClienteToForm(Cliente);
+      EstadoBotoes(BOTAO_CONSULTAR);
     end;
   finally
     FreeAndNil(Cliente);
@@ -259,6 +269,14 @@ begin
     LimiteCredito             := StrToFloat(ClcLimiteCredito.Text);
   end;
   Result := Cliente;
+end;
+
+procedure TFrmPrincipal.ResetarForm;
+begin
+  EdtNome.Text := '';
+  MskCPF.Text  := '';
+  EdtRG.Text   := '';
+  DteNascimento.Text := '';
 end;
 
 procedure TFrmPrincipal.SpnCodigoExit(Sender: TObject);
