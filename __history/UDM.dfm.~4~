@@ -1,0 +1,28 @@
+object DM: TDM
+  OldCreateOrder = False
+  Height = 380
+  Width = 627
+  object Conn: TFDConnection
+    Left = 40
+    Top = 56
+  end
+  object DriverLink: TFDPhysPgDriverLink
+    Left = 40
+    Top = 128
+  end
+  object Query: TFDQuery
+    Connection = Conn
+    Left = 168
+    Top = 104
+  end
+  object QryAniversariantes: TFDQuery
+    Connection = Conn
+    Left = 216
+    Top = 200
+  end
+  object DSAniversariantes: TDataSource
+    DataSet = QryAniversariantes
+    Left = 216
+    Top = 264
+  end
+end

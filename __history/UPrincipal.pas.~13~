@@ -1,0 +1,78 @@
+unit UPrincipal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, cxGraphics, cxLookAndFeels,
+  cxLookAndFeelPainters, Vcl.Menus, dxSkinsCore, dxSkinBlack, dxSkinBlue,
+  dxSkinBlueprint, dxSkinCaramel, dxSkinCoffee, dxSkinDarkRoom, dxSkinDarkSide,
+  dxSkinDevExpressDarkStyle, dxSkinDevExpressStyle, dxSkinFoggy,
+  dxSkinGlassOceans, dxSkinHighContrast, dxSkiniMaginary, dxSkinLilian,
+  dxSkinLiquidSky, dxSkinLondonLiquidSky, dxSkinMcSkin, dxSkinMetropolis,
+  dxSkinMetropolisDark, dxSkinMoneyTwins, dxSkinOffice2007Black,
+  dxSkinOffice2007Blue, dxSkinOffice2007Green, dxSkinOffice2007Pink,
+  dxSkinOffice2007Silver, dxSkinOffice2010Black, dxSkinOffice2010Blue,
+  dxSkinOffice2010Silver, dxSkinOffice2013DarkGray, dxSkinOffice2013LightGray,
+  dxSkinOffice2013White, dxSkinOffice2016Colorful, dxSkinOffice2016Dark,
+  dxSkinPumpkin, dxSkinSeven, dxSkinSevenClassic, dxSkinSharp, dxSkinSharpPlus,
+  dxSkinSilver, dxSkinSpringTime, dxSkinStardust, dxSkinSummer2008,
+  dxSkinTheAsphaltWorld, dxSkinsDefaultPainters, dxSkinValentine,
+  dxSkinVisualStudio2013Blue, dxSkinVisualStudio2013Dark,
+  dxSkinVisualStudio2013Light, dxSkinVS2010, dxSkinWhiteprint,
+  dxSkinXmas2008Blue, Vcl.StdCtrls, cxButtons, Vcl.ExtCtrls, cxClasses,
+  dxSkinsForm, cxControls, cxContainer, cxEdit, cxGroupBox, cxMaskEdit, cxLabel,
+  cxTextEdit, cxDropDownEdit, cxCalc;
+
+type
+  TFrmPrincipal = class(TForm)
+    Panel1: TPanel;
+    BtnNovo: TcxButton;
+    BtnAlterar: TcxButton;
+    BtnExcluir: TcxButton;
+    BtnCancelar: TcxButton;
+    BtnRelatorio: TcxButton;
+    BtnPesquisa: TcxButton;
+    Panel2: TPanel;
+    cxGroupBox1: TcxGroupBox;
+    cxGroupBox2: TcxGroupBox;
+    cxGroupBox3: TcxGroupBox;
+    cxGroupBox4: TcxGroupBox;
+    cxTextEdit1: TcxTextEdit;
+    cxLabel1: TcxLabel;
+    cxMaskEdit1: TcxMaskEdit;
+    cxLabel2: TcxLabel;
+    cxLabel3: TcxLabel;
+    cxTextEdit2: TcxTextEdit;
+    cxLabel4: TcxLabel;
+    cxTextEdit3: TcxTextEdit;
+    cxLabel5: TcxLabel;
+    cxTextEdit4: TcxTextEdit;
+    cxLabel6: TcxLabel;
+    cxMaskEdit2: TcxMaskEdit;
+    cxLabel7: TcxLabel;
+    cxCalcEdit1: TcxCalcEdit;
+    cxLabel8: TcxLabel;
+    cxTextEdit5: TcxTextEdit;
+    cxLabel9: TcxLabel;
+    cxTextEdit6: TcxTextEdit;
+    cxLabel10: TcxLabel;
+    cxMaskEdit3: TcxMaskEdit;
+    cxLabel11: TcxLabel;
+    cxTextEdit7: TcxTextEdit;
+    cxLabel12: TcxLabel;
+    cxTextEdit8: TcxTextEdit;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmPrincipal: TFrmPrincipal;
+
+implementation
+
+{$R *.dfm}
+
+end.
