@@ -29,17 +29,8 @@ object FrmBusca: TFrmBusca
     Height = 41
     Align = alBottom
     TabOrder = 1
-    object BtnSelecionar: TcxButton
-      Left = 448
-      Top = 6
-      Width = 169
-      Height = 25
-      Caption = 'Selecionar'
-      TabOrder = 0
-      OnClick = BtnSelecionarClick
-    end
   end
-  object cxGrid: TcxGrid
+  object cxGrid1: TcxGrid
     Left = 0
     Top = 73
     Width = 631
@@ -50,14 +41,14 @@ object FrmBusca: TFrmBusca
     ExplicitTop = 103
     ExplicitWidth = 585
     ExplicitHeight = 170
-    object cxGridDBTableView: TcxGridDBTableView
+    object cxGrid1DBTableView1: TcxGridDBTableView
       Navigator.Buttons.CustomButtons = <>
       DataController.Summary.DefaultGroupSummaryItems = <>
       DataController.Summary.FooterSummaryItems = <>
       DataController.Summary.SummaryGroups = <>
     end
-    object cxGridLevel: TcxGridLevel
-      GridView = cxGridDBTableView
+    object cxGrid1Level1: TcxGridLevel
+      GridView = cxGrid1DBTableView1
     end
   end
 end

@@ -106,7 +106,7 @@
         </DCCReference>
         <DCCReference Include="UUtil.pas"/>
         <DCCReference Include="UBusca.pas">
-            <Form>Form1</Form>
+            <Form>FrmBusca</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

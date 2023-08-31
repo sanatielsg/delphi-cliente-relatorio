@@ -23,17 +23,15 @@ uses
   dxSkinXmas2008Blue, dxSkinscxPCPainter, cxCustomData, cxFilter, cxData,
   cxDataStorage, cxEdit, cxNavigator, Data.DB, cxDBData, cxGridLevel, cxClasses,
   cxGridCustomView, cxGridCustomTableView, cxGridTableView, cxGridDBTableView,
-  cxGrid, Vcl.Menus, Vcl.StdCtrls, cxButtons;
+  cxGrid;
 
 type
   TFrmBusca = class(TForm)
     Panel1: TPanel;
     Panel2: TPanel;
-    cxGridDBTableView: TcxGridDBTableView;
-    cxGridLevel: TcxGridLevel;
-    cxGrid: TcxGrid;
-    BtnSelecionar: TcxButton;
-    procedure BtnSelecionarClick(Sender: TObject);
+    cxGrid1DBTableView1: TcxGridDBTableView;
+    cxGrid1Level1: TcxGridLevel;
+    cxGrid1: TcxGrid;
   private
     { Private declarations }
   public
@@ -46,10 +44,5 @@ var
 implementation
 
 {$R *.dfm}
-
-procedure TFrmBusca.BtnSelecionarClick(Sender: TObject);
-begin
-  ModalResult := mrOk;
-end;
 
 end.

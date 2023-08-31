@@ -346,6 +346,12 @@ begin
     try
       Busca := TFrmBusca.Create(Self);
       Busca.ShowModal;
+      if Busca.ModalResult = mrOk then
+      begin
+        //alterar aqui
+        SpnCodigo.Value := 3;
+        ConsultarCliente;
+      end;
     finally
       FreeAndNil(Busca);
     end;

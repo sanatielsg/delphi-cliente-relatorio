@@ -22,7 +22,7 @@ object DM: TDM
   object QryClientes: TFDQuery
     Connection = Conn
     SQL.Strings = (
-      'select * from cliente order by cli_codigo')
+      'select * from cliente')
     Left = 248
     Top = 192
     object QryClientescli_codigo: TIntegerField

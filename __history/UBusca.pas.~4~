@@ -29,9 +29,9 @@ type
   TFrmBusca = class(TForm)
     Panel1: TPanel;
     Panel2: TPanel;
-    cxGridDBTableView: TcxGridDBTableView;
-    cxGridLevel: TcxGridLevel;
-    cxGrid: TcxGrid;
+    cxGrid1DBTableView1: TcxGridDBTableView;
+    cxGrid1Level1: TcxGridLevel;
+    cxGrid1: TcxGrid;
     BtnSelecionar: TcxButton;
     procedure BtnSelecionarClick(Sender: TObject);
   private
