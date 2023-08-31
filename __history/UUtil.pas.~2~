@@ -1,0 +1,12 @@
+unit UUtil;
+
+interface
+
+type
+ TUtil = class
+
+ end;
+
+implementation
+
+end.

@@ -24,7 +24,7 @@ uses
   dxSkinsForm, cxControls, cxContainer, cxEdit, cxGroupBox, cxMaskEdit, cxLabel,
   cxTextEdit, cxDropDownEdit, cxCalc, Vcl.ComCtrls, dxCore, cxDateUtils,
   cxCalendar,
-  System.IniFiles, cxSpinEdit, cxDBEdit, UDM
+  System.IniFiles, cxSpinEdit, cxDBEdit, UDM, UUtil
   ;
 
 type
@@ -109,14 +109,49 @@ implementation
 { TFrmPrincipal }
 
 procedure TFrmPrincipal.AlterarOuInserir;
+var Cliente : TCliente;
 begin
-
+  Cliente := TCliente.Create;
+  try
+    try
+      with Cliente do
+      begin
+        if SpnCodigo.Text <> '' then
+          Codigo :=  SpnCodigo.Value;
+        Nome       := EdtNome.Text;
+        CPF        := TUtil.RemoveMascara(MskCPF);
+        RG         := EdtRG.Text;
+        CNPJ       := TUtil.RemoveMascara(MskCNPJ);
+        Endereco   := EdtEndereco.Text;
+        Numero     := EdtNumero.Text;
+        CEP        := TUtil.RemoveMascara(MskCEP);
+        Cidade     := EdtCidade.Text;
+        UF         := EdtUF.Text;
+        if ClcLimiteCredito.Text <> '' then
+          LimiteCredito := ClcLimiteCredito.Value;
+        DataNascimento := DteNascimento.Date;
+        RazaoSocial    := EdtRazaoSocial.Text;
+        NomeFantasia   := EdtNomeFantasia.Text;
+      end;
+      if (Cliente.Codigo = 0) then
+        DM.Insert(Cliente)
+      else
+        DM.Update(Cliente);
+      ShowMessage('Registro gravado com Sucesso!');
+    except
+      on E:Exception do
+        ShowMessage('Ocorreu um erro ao inserir : '+E.Message);
+    end;
+  finally
+    FreeAndNil(Cliente);
+  end;
 end;
 
 procedure TFrmPrincipal.BtnAlterarClick(Sender: TObject);
 begin
-  EstadoBotoes(ESTADO_INSERIR);
   AlterarOuInserir();
+  EstadoBotoes(ESTADO_INSERIR);
+  ResetarForm;
 end;
 
 procedure TFrmPrincipal.BtnCancelarClick(Sender: TObject);

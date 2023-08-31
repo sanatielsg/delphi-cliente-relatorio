@@ -76,8 +76,6 @@ type
     { Public declarations }
     function GetCliente(Value: Integer): TCliente;
     function Delete(Value: Integer): Integer;
-    function Insert(Value: TCliente): Integer;
-    function Update(Value: TCliente): Integer;
   end;
 
 var
@@ -144,108 +142,6 @@ begin
     end;
   end;
   Result := Cliente;
-end;
-
-function TDM.Insert(Value: TCliente): Integer;
-  var sqlTmp : string;
-begin
-  Result := 0;
-  sqlTmp := ' insert into cliente (  '
-       + '  cli_nome              '
-       + ' ,cli_cpf               '
-       + ' ,cli_rg                '
-       + ' ,cli_cnpj              '
-       + ' ,cli_tipo_pessoa       '
-       + ' ,cli_endereco          '
-       + ' ,cli_numero            '
-       + ' ,cli_cep               '
-       + ' ,cli_cidade            '
-       + ' ,cli_uf                '
-       + ' ,cli_limite_credito    '
-       + ' ,cli_razao_social      '
-       + ' ,cli_nome_fantasia     '
-       + ' ,cli_data_nascimento   '
-       + ') values (              '
-       + '  :cli_nome             '
-       + ' ,:cli_cpf              '
-       + ' ,:cli_rg               '
-       + ' ,:cli_cnpj             '
-       + ' ,:cli_tipo_pessoa      '
-       + ' ,:cli_endereco         '
-       + ' ,:cli_numero           '
-       + ' ,:cli_cep              '
-       + ' ,:cli_cidade           '
-       + ' ,:cli_uf               '
-       + ' ,:cli_limite_credito   '
-       + ' ,:cli_razao_social     '
-       + ' ,:cli_nome_fantasia    '
-       + ' ,:cli_data_nascimento  '
-       + ' ) ';
-
-  with Query do
-  begin
-    Close;
-    SQL.Clear;
-    SQL.Add(sqlTmp);
-    ParamByName('cli_nome').AsString          := Value.Nome;
-    ParamByName('cli_cpf').AsString           := Value.CPF;
-    ParamByName('cli_rg').AsString            := Value.RG;
-    ParamByName('cli_cnpj').AsString          := Value.CNPJ;
-    ParamByName('cli_endereco').AsString      := Value.Endereco;
-    ParamByName('cli_numero').AsString        := Value.Numero;
-    ParamByName('cli_cep').AsString           := Value.CEP;
-    ParamByName('cli_cidade').AsString        := Value.Cidade;
-    ParamByName('cli_uf').AsString            := Value.UF;
-    ParamByName('cli_limite_credito').AsFloat := Value.LimiteCredito;
-    ParamByName('cli_razao_social').AsString  := Value.RazaoSocial;
-    ParamByName('cli_nome_fantasia').AsString := Value.NomeFantasia;
-    ParamByName('cli_data_nascimento').AsDate := Value.DataNascimento;
-    ExecSQL;
-    Result := RowsAffected;
-  end;
-end;
-
-function TDM.Update(Value: TCliente): Integer;
-  var sqlTmp : string;
-begin
-  Result := 0;
-  sqlTMp :=  'update cliente                              '
-           + 'set cli_nome         = :cli_nome            '
-           + ',cli_cpf             = :cli_cpf             '
-           + ',cli_rg              = :cli_rg              '
-           + ',cli_cnpj            = :cli_cnpj            '
-           + ',cli_endereco        = :cli_endereco        '
-           + ',cli_numero          = :cli_numero          '
-           + ',cli_cep             = :cli_cep             '
-           + ',cli_cidade          = :cli_cidade          '
-           + ',cli_uf              = :cli_uf              '
-           + ',cli_limite_credito  = :cli_limite_credito  '
-           + ',cli_razao_social    = :cli_razao_social    '
-           + ',cli_nome_fantasia   = :cli_nome_fantasia   '
-           + ',cli_data_nascimento = :cli_data_nascimento '
-           + 'where cli_codigo = :cli_codigo              ';
-  with Query do
-    begin
-      Close;
-      SQL.Clear;
-      SQL.Add(sqlTmp);
-      ParamByName('cli_codigo').AsInteger       := Value.Codigo;
-      ParamByName('cli_nome').AsString          := Value.Nome;
-      ParamByName('cli_cpf').AsString           := Value.CPF;
-      ParamByName('cli_rg').AsString            := Value.RG;
-      ParamByName('cli_cnpj').AsString          := Value.CNPJ;
-      ParamByName('cli_endereco').AsString      := Value.Endereco;
-      ParamByName('cli_numero').AsString        := Value.Numero;
-      ParamByName('cli_cep').AsString           := Value.CEP;
-      ParamByName('cli_cidade').AsString        := Value.Cidade;
-      ParamByName('cli_uf').AsString            := Value.UF;
-      ParamByName('cli_limite_credito').AsFloat := Value.LimiteCredito;
-      ParamByName('cli_razao_social').AsString  := Value.RazaoSocial;
-      ParamByName('cli_nome_fantasia').AsString := Value.NomeFantasia;
-      ParamByName('cli_data_nascimento').AsDate := Value.DataNascimento;
-      ExecSQL;
-      Result := RowsAffected;
-    end;
 end;
 
 end.

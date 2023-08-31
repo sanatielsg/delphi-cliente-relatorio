@@ -1,12 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
-  <Transactions>
-    <Transaction>2023/08/30 16:01:13.778,=C:\Users\dev\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2023/08/30 16:01:48.382,C:\git-repositories\delphi-cliente-relatorio\UPrincipal.dfm=C:\Users\dev\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>2023/08/30 16:01:48.382,C:\git-repositories\delphi-cliente-relatorio\UPrincipal.pas=C:\Users\dev\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2023/08/30 16:01:54.371,C:\git-repositories\delphi-cliente-relatorio\Cliente.dproj=C:\Users\dev\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
-    <Transaction>2023/08/30 17:26:41.556,=C:\git-repositories\delphi-cliente-relatorio\Unit1.pas</Transaction>
-    <Transaction>2023/08/30 17:26:48.256,C:\git-repositories\delphi-cliente-relatorio\UDM.dfm=C:\git-repositories\delphi-cliente-relatorio\Unit1.dfm</Transaction>
-    <Transaction>2023/08/30 17:26:48.256,C:\git-repositories\delphi-cliente-relatorio\UDM.pas=C:\git-repositories\delphi-cliente-relatorio\Unit1.pas</Transaction>
+	<Transactions>
+    <Transaction>2023/08/30 16:01:13.000.778,=C:\Users\dev\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/08/30 16:01:48.000.382,C:\Users\dev\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\git-repositories\delphi-cliente-relatorio\UPrincipal.dfm</Transaction>
+    <Transaction>2023/08/30 16:01:48.000.382,C:\Users\dev\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\git-repositories\delphi-cliente-relatorio\UPrincipal.pas</Transaction>
+    <Transaction>2023/08/30 16:01:54.000.371,C:\Users\dev\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\git-repositories\delphi-cliente-relatorio\Cliente.dproj</Transaction>
+    <Transaction>2023/08/30 17:26:41.000.556,=C:\git-repositories\delphi-cliente-relatorio\Unit1.pas</Transaction>
+    <Transaction>2023/08/30 17:26:48.000.256,C:\git-repositories\delphi-cliente-relatorio\Unit1.dfm=C:\git-repositories\delphi-cliente-relatorio\UDM.dfm</Transaction>
+    <Transaction>2023/08/30 17:26:48.000.256,C:\git-repositories\delphi-cliente-relatorio\Unit1.pas=C:\git-repositories\delphi-cliente-relatorio\UDM.pas</Transaction>
+    <Transaction>2023/08/31 00:16:30.610,=C:\git-repositories\delphi-cliente-relatorio\Unit1.pas</Transaction>
+    <Transaction>2023/08/31 00:16:39.992,C:\git-repositories\delphi-cliente-relatorio\UUtil.pas=C:\git-repositories\delphi-cliente-relatorio\Unit1.pas</Transaction>
   </Transactions>
 </BorlandProject>

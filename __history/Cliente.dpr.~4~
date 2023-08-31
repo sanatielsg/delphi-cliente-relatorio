@@ -3,8 +3,7 @@ program Cliente;
 uses
   Vcl.Forms,
   UPrincipal in 'UPrincipal.pas' {FrmPrincipal},
-  UDM in 'UDM.pas' {DM: TDataModule},
-  UUtil in 'UUtil.pas';
+  UDM in 'UDM.pas' {DM: TDataModule};
 
 {$R *.res}
 

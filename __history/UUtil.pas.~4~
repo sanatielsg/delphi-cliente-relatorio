@@ -1,0 +1,18 @@
+unit UUtil;
+
+interface
+
+uses cxMaskEdit;
+
+type
+ TUtil = class
+   private
+
+
+   public
+     class function RemoveMascara(Value: TcxMaskEdit);
+ end;
+
+implementation
+
+end.

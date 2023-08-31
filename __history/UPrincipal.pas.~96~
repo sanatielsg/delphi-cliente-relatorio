@@ -1,4 +1,4 @@
-ï»¿unit UPrincipal;
+unit UPrincipal;
 
 interface
 
@@ -75,6 +75,7 @@ type
     procedure BtnCancelarClick(Sender: TObject);
     procedure SpnCodigoExit(Sender: TObject);
     procedure SpnCodigoEnter(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -86,6 +87,7 @@ type
     procedure ConsultarCliente;
     procedure AlterarOuInserir;
     procedure ResetarForm;
+    procedure Excluir();
   end;
 
 var
@@ -93,12 +95,12 @@ var
   Config : TIniFile;
 
 const
-  ESTADO_NOVO     = 1;
+  ESTADO_NOVO      = 1;
   ESTADO_INSERIR   = 2;
-  BOTAO_EXCLUIR   = 3;
-  BOTAO_CANCELAR  = 4;
-  BOTAO_CONSULTAR = 5;
-  BOTAO_PRONTO    = 6;
+  ESTADO_EXCLUIR   = 3;
+  ESTADO_CANCELAR  = 4;
+  ESTADO_CONSULTAR = 5;
+  ESTADO_PRONTO    = 6;
 
 implementation
 
@@ -107,8 +109,43 @@ implementation
 { TFrmPrincipal }
 
 procedure TFrmPrincipal.AlterarOuInserir;
+var Cliente : TCliente;
 begin
-
+  Cliente := TCliente.Create;
+  try
+    try
+      with Cliente do
+      begin
+        if EdtCadCodigo.Text <> '' then
+          Codigo :=  StrToInt(EdtCadCodigo.Text);
+        Nome       := EdtCadNome.Text;
+        CPF        := TUtil.RemoveMascara(EdtCadCPF);
+        RG         := EdtCadRG.Text;
+        CNPJ       := TUtil.RemoveMascara(EdtCadCNPJ);
+        TipoPessoa := RgpCadTipoPessoa.ItemIndex + 1;
+        Endereco   := EdtCadEndereco.Text;
+        Numero     := EdtCadNumero.Text;
+        CEP        := TUtil.RemoveMascara(EdtCadCEP);
+        Cidade     := EdtCadCidade.Text;
+        UF         := EdtCadUF.Text;
+        if EdtCadLimite.Text <> '' then
+          LimiteCredito := StrToFloat(EdtCadLimite.Text);
+        DataNascimento := DTPCadDataNascimento.Date;
+        RazaoSocial    := EdtCadRazaoSocial.Text;
+        NomeFantasia   := EdtCadFantasia.Text;
+      end;
+      if (Cliente.Codigo = 0) then
+        DM.Insert(Cliente)
+      else
+        DM.Update(Cliente);
+      ShowMessage('Registro gravado com Sucesso!');
+    except
+      on E:Exception do
+        ShowMessage('Ocorreu um erro ao inserir : '+E.Message);
+    end;
+  finally
+    FreeAndNil(Cliente);
+  end;
 end;
 
 procedure TFrmPrincipal.BtnAlterarClick(Sender: TObject);
@@ -119,13 +156,14 @@ end;
 
 procedure TFrmPrincipal.BtnCancelarClick(Sender: TObject);
 begin
-  EstadoBotoes(BOTAO_CANCELAR);
+  EstadoBotoes(ESTADO_CANCELAR);
   ResetarForm;
 end;
 
 procedure TFrmPrincipal.BtnExcluirClick(Sender: TObject);
 begin
-  EstadoBotoes(BOTAO_EXCLUIR);
+  Excluir();
+  EstadoBotoes(ESTADO_EXCLUIR);
 end;
 
 procedure TFrmPrincipal.BtnNovoClick(Sender: TObject);
@@ -202,10 +240,10 @@ begin
     if Cliente <> Nil then
     begin
       ClienteToForm(Cliente);
-      EstadoBotoes(BOTAO_CONSULTAR);
+      EstadoBotoes(ESTADO_CONSULTAR);
     end else
     begin
-      EstadoBotoes(BOTAO_CANCELAR);
+      EstadoBotoes(ESTADO_CANCELAR);
     end;
   finally
     FreeAndNil(Cliente);
@@ -224,7 +262,7 @@ begin
       SpnCodigo.Value     := 0;
       SpnCodigo.Enabled   := False;
    end;
-   ESTADO_INSERIR..BOTAO_CANCELAR : begin
+   ESTADO_INSERIR..ESTADO_CANCELAR : begin
       BtnNovo.Enabled     := True;
       BtnAlterar.Enabled  := False;
       BtnExcluir.Enabled  := False;
@@ -232,7 +270,7 @@ begin
       SpnCodigo.Value     := 0;
       SpnCodigo.Enabled   := True;
    end;
-   BOTAO_CONSULTAR : begin
+   ESTADO_CONSULTAR : begin
       BtnNovo.Enabled     := False;
       BtnAlterar.Enabled  := True;
       BtnAlterar.Caption  := 'Alterar';
@@ -240,7 +278,7 @@ begin
       BtnCancelar.Enabled := True;
       SpnCodigo.Enabled   := False;
    end;
-   BOTAO_PRONTO : begin
+   ESTADO_PRONTO : begin
       BtnNovo.Enabled     := True;
       BtnAlterar.Enabled  := False;
       BtnExcluir.Enabled  := False;
@@ -252,10 +290,38 @@ begin
   end;
 end;
 
+procedure TFrmPrincipal.Excluir;
+begin
+  case Application.MessageBox('Confirma a exclusão?','Confirmação', MB_YESNO + MB_ICONINFORMATION) of
+    mrNo, mrCancel : begin
+      ShowMessage('Ação cancelada');
+    end;
+    mrYes : begin
+      try
+        DM.Delete(SpnCodigo.Value);
+      except
+        on E:Exception do
+          ShowMessage('Ocorreu um erro ao excluir: '+E.Message);
+      end;
+    end;
+  end;
+  BtnCancelarClick(Self);
+end;
+
+procedure TFrmPrincipal.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+  begin
+    Key := #0;
+    Perform(WM_NEXTDLGCTL, 0, 0);
+  end;
+end;
+
 procedure TFrmPrincipal.FormShow(Sender: TObject);
 begin
  Conectar;
- EstadoBotoes(BOTAO_PRONTO);
+ EstadoBotoes(ESTADO_PRONTO);
+ SpnCodigo.SetFocus;
 end;
 
 function TFrmPrincipal.FormToCliente: TCliente;
@@ -302,6 +368,7 @@ end;
 procedure TFrmPrincipal.SpnCodigoEnter(Sender: TObject);
 begin
   ResetarForm;
+  SpnCodigo.SelectAll;
 end;
 
 procedure TFrmPrincipal.SpnCodigoExit(Sender: TObject);

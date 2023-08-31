@@ -155,6 +155,7 @@ object FrmPrincipal: TFrmPrincipal
       object EdtNome: TcxTextEdit
         Left = 8
         Top = 33
+        Properties.CharCase = ecUpperCase
         TabOrder = 0
         Width = 337
       end
@@ -214,6 +215,7 @@ object FrmPrincipal: TFrmPrincipal
       object EdtRazaoSocial: TcxTextEdit
         Left = 5
         Top = 33
+        Properties.CharCase = ecUpperCase
         TabOrder = 1
         Width = 366
       end
@@ -225,6 +227,7 @@ object FrmPrincipal: TFrmPrincipal
       object EdtNomeFantasia: TcxTextEdit
         Left = 5
         Top = 73
+        Properties.CharCase = ecUpperCase
         TabOrder = 3
         Width = 366
       end
@@ -257,6 +260,7 @@ object FrmPrincipal: TFrmPrincipal
       object EdtEndereco: TcxTextEdit
         Left = 8
         Top = 33
+        Properties.CharCase = ecUpperCase
         TabOrder = 1
         Width = 337
       end

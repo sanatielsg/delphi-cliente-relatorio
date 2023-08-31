@@ -224,28 +224,9 @@ begin
            + ',cli_nome_fantasia   = :cli_nome_fantasia   '
            + ',cli_data_nascimento = :cli_data_nascimento '
            + 'where cli_codigo = :cli_codigo              ';
-  with Query do
-    begin
-      Close;
-      SQL.Clear;
-      SQL.Add(sqlTmp);
-      ParamByName('cli_codigo').AsInteger       := Value.Codigo;
-      ParamByName('cli_nome').AsString          := Value.Nome;
-      ParamByName('cli_cpf').AsString           := Value.CPF;
-      ParamByName('cli_rg').AsString            := Value.RG;
-      ParamByName('cli_cnpj').AsString          := Value.CNPJ;
-      ParamByName('cli_endereco').AsString      := Value.Endereco;
-      ParamByName('cli_numero').AsString        := Value.Numero;
-      ParamByName('cli_cep').AsString           := Value.CEP;
-      ParamByName('cli_cidade').AsString        := Value.Cidade;
-      ParamByName('cli_uf').AsString            := Value.UF;
-      ParamByName('cli_limite_credito').AsFloat := Value.LimiteCredito;
-      ParamByName('cli_razao_social').AsString  := Value.RazaoSocial;
-      ParamByName('cli_nome_fantasia').AsString := Value.NomeFantasia;
-      ParamByName('cli_data_nascimento').AsDate := Value.DataNascimento;
-      ExecSQL;
-      Result := RowsAffected;
-    end;
+
+
+
 end;
 
 end.
