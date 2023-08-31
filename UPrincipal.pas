@@ -75,6 +75,7 @@ type
     procedure BtnCancelarClick(Sender: TObject);
     procedure SpnCodigoExit(Sender: TObject);
     procedure SpnCodigoEnter(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -86,6 +87,7 @@ type
     procedure ConsultarCliente;
     procedure AlterarOuInserir;
     procedure ResetarForm;
+    procedure Excluir();
   end;
 
 var
@@ -125,6 +127,7 @@ end;
 
 procedure TFrmPrincipal.BtnExcluirClick(Sender: TObject);
 begin
+  Excluir();
   EstadoBotoes(ESTADO_EXCLUIR);
 end;
 
@@ -252,10 +255,38 @@ begin
   end;
 end;
 
+procedure TFrmPrincipal.Excluir;
+begin
+  case Application.MessageBox('Confirma a exclusão?','Confirmação', MB_YESNO + MB_ICONINFORMATION) of
+    mrNo, mrCancel : begin
+      ShowMessage('Ação cancelada');
+    end;
+    mrYes : begin
+      try
+        DM.Delete(SpnCodigo.Value);
+      except
+        on E:Exception do
+          ShowMessage('Ocorreu um erro ao excluir: '+E.Message);
+      end;
+    end;
+  end;
+  BtnCancelarClick(Self);
+end;
+
+procedure TFrmPrincipal.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+  begin
+    Key := #0;
+    Perform(WM_NEXTDLGCTL, 0, 0);
+  end;
+end;
+
 procedure TFrmPrincipal.FormShow(Sender: TObject);
 begin
  Conectar;
  EstadoBotoes(ESTADO_PRONTO);
+ SpnCodigo.SetFocus;
 end;
 
 function TFrmPrincipal.FormToCliente: TCliente;
@@ -302,6 +333,7 @@ end;
 procedure TFrmPrincipal.SpnCodigoEnter(Sender: TObject);
 begin
   ResetarForm;
+  SpnCodigo.SelectAll;
 end;
 
 procedure TFrmPrincipal.SpnCodigoExit(Sender: TObject);

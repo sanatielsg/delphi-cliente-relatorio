@@ -86,6 +86,7 @@ type
     procedure ConsultarCliente;
     procedure AlterarOuInserir;
     procedure ResetarForm;
+    procedure Excluir();
   end;
 
 var
@@ -93,12 +94,12 @@ var
   Config : TIniFile;
 
 const
-  BOTAO_NOVO      = 1;
-  BOTAO_INSERIR   = 2;
-  BOTAO_EXCLUIR   = 3;
-  BOTAO_CANCELAR  = 4;
-  BOTAO_CONSULTAR = 5;
-  BOTAO_PRONTO    = 6;
+  ESTADO_NOVO      = 1;
+  ESTADO_INSERIR   = 2;
+  ESTADO_EXCLUIR   = 3;
+  ESTADO_CANCELAR  = 4;
+  ESTADO_CONSULTAR = 5;
+  ESTADO_PRONTO    = 6;
 
 implementation
 
@@ -113,24 +114,25 @@ end;
 
 procedure TFrmPrincipal.BtnAlterarClick(Sender: TObject);
 begin
-  EstadoBotoes(BOTAO_INSERIR);
+  EstadoBotoes(ESTADO_INSERIR);
   AlterarOuInserir();
 end;
 
 procedure TFrmPrincipal.BtnCancelarClick(Sender: TObject);
 begin
-  EstadoBotoes(BOTAO_CANCELAR);
+  EstadoBotoes(ESTADO_CANCELAR);
   ResetarForm;
 end;
 
 procedure TFrmPrincipal.BtnExcluirClick(Sender: TObject);
 begin
-  EstadoBotoes(BOTAO_EXCLUIR);
+  Excluir();
+  EstadoBotoes(ESTADO_EXCLUIR);
 end;
 
 procedure TFrmPrincipal.BtnNovoClick(Sender: TObject);
 begin
-  EstadoBotoes(BOTAO_NOVO);
+  EstadoBotoes(ESTADO_NOVO);
   EdtNome.SetFocus;
 end;
 
@@ -202,10 +204,10 @@ begin
     if Cliente <> Nil then
     begin
       ClienteToForm(Cliente);
-      EstadoBotoes(BOTAO_CONSULTAR);
+      EstadoBotoes(ESTADO_CONSULTAR);
     end else
     begin
-      EstadoBotoes(BOTAO_CANCELAR);
+      EstadoBotoes(ESTADO_CANCELAR);
     end;
   finally
     FreeAndNil(Cliente);
@@ -215,7 +217,7 @@ end;
 procedure TFrmPrincipal.EstadoBotoes(Value: integer);
 begin
   case Value of
-   BOTAO_NOVO : begin
+   ESTADO_NOVO : begin
       BtnNovo.Enabled     := False;
       BtnAlterar.Enabled  := True;
       BtnAlterar.Caption  := 'Inserir';
@@ -224,7 +226,7 @@ begin
       SpnCodigo.Value     := 0;
       SpnCodigo.Enabled   := False;
    end;
-   BOTAO_INSERIR..BOTAO_CANCELAR : begin
+   ESTADO_INSERIR..ESTADO_CANCELAR : begin
       BtnNovo.Enabled     := True;
       BtnAlterar.Enabled  := False;
       BtnExcluir.Enabled  := False;
@@ -232,7 +234,7 @@ begin
       SpnCodigo.Value     := 0;
       SpnCodigo.Enabled   := True;
    end;
-   BOTAO_CONSULTAR : begin
+   ESTADO_CONSULTAR : begin
       BtnNovo.Enabled     := False;
       BtnAlterar.Enabled  := True;
       BtnAlterar.Caption  := 'Alterar';
@@ -240,7 +242,7 @@ begin
       BtnCancelar.Enabled := True;
       SpnCodigo.Enabled   := False;
    end;
-   BOTAO_PRONTO : begin
+   ESTADO_PRONTO : begin
       BtnNovo.Enabled     := True;
       BtnAlterar.Enabled  := False;
       BtnExcluir.Enabled  := False;
@@ -252,10 +254,28 @@ begin
   end;
 end;
 
+procedure TFrmPrincipal.Excluir;
+begin
+  case Application.MessageBox('Confirma a exclusão?','Confirmação', MB_YESNO + MB_ICONINFORMATION) of
+    mrNo, mrCancel : begin
+      ShowMessage('Ação cancelada');
+    end;
+    mrYes : begin
+      try
+        DM.Delete(SpnCodigo.Value);
+      except
+        on E:Exception do
+          ShowMessage('Ocorreu um erro ao excluir: '+E.Message);
+      end;
+    end;
+  end;
+  BtnCancelarClick(Self);
+end;
+
 procedure TFrmPrincipal.FormShow(Sender: TObject);
 begin
  Conectar;
- EstadoBotoes(BOTAO_PRONTO);
+ EstadoBotoes(ESTADO_PRONTO);
 end;
 
 function TFrmPrincipal.FormToCliente: TCliente;

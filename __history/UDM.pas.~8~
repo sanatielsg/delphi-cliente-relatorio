@@ -75,7 +75,6 @@ type
   public
     { Public declarations }
     function GetCliente(Value: Integer): TCliente;
-    function Delete(Value: Integer): Integer;
   end;
 
 var
@@ -88,22 +87,6 @@ implementation
 {$R *.dfm}
 
 { TDM }
-
-function TDM.Delete(Value: Integer): Integer;
-  var sqlTmp : string;
-begin
-  Result := 0;
-  sqlTmp := 'delete from cliente where cli_codigo = :cli_codigo';
-  with Query do
-  begin
-    Close;
-    SQL.Clear;
-    SQL.Add(sqlTmp);
-    ParamByName('cli_codigo').AsInteger := Value;
-    ExecSQL;
-    Result := RowsAffected;
-  end;
-end;
 
 function TDM.GetCliente(Value: Integer): TCliente;
   var sqlTmp : string;

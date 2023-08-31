@@ -10,8 +10,10 @@ object FrmPrincipal: TFrmPrincipal
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  KeyPreview = True
   OldCreateOrder = False
   Position = poScreenCenter
+  OnKeyPress = FormKeyPress
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -143,9 +145,6 @@ object FrmPrincipal: TFrmPrincipal
     Color = clGradientActiveCaption
     ParentBackground = False
     TabOrder = 1
-    ExplicitTop = 119
-    ExplicitWidth = 713
-    ExplicitHeight = 266
     object cxGroupBox1: TcxGroupBox
       Left = 9
       Top = 6

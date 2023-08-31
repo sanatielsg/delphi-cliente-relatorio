@@ -117,8 +117,9 @@ object FrmPrincipal: TFrmPrincipal
     end
     object SpnCodigo: TcxSpinEdit
       Left = 9
-      Top = 30
+      Top = 32
       ParentFont = False
+      Properties.AssignedValues.MinValue = True
       Style.Font.Charset = DEFAULT_CHARSET
       Style.Font.Color = clWindowText
       Style.Font.Height = -24
@@ -126,6 +127,9 @@ object FrmPrincipal: TFrmPrincipal
       Style.Font.Style = []
       Style.IsFontAssigned = True
       TabOrder = 6
+      Value = 1
+      OnEnter = SpnCodigoEnter
+      OnExit = SpnCodigoExit
       Width = 121
     end
   end
@@ -139,9 +143,6 @@ object FrmPrincipal: TFrmPrincipal
     Color = clGradientActiveCaption
     ParentBackground = False
     TabOrder = 1
-    ExplicitTop = 119
-    ExplicitWidth = 713
-    ExplicitHeight = 266
     object cxGroupBox1: TcxGroupBox
       Left = 9
       Top = 6
