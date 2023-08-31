@@ -1,0 +1,54 @@
+object FrmBusca: TFrmBusca
+  Left = 0
+  Top = 0
+  Caption = 'Pesquisa'
+  ClientHeight = 333
+  ClientWidth = 631
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 631
+    Height = 73
+    Align = alTop
+    TabOrder = 0
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 292
+    Width = 631
+    Height = 41
+    Align = alBottom
+    TabOrder = 1
+  end
+  object cxGrid1: TcxGrid
+    Left = 0
+    Top = 73
+    Width = 631
+    Height = 219
+    Align = alClient
+    TabOrder = 2
+    ExplicitLeft = 24
+    ExplicitTop = 103
+    ExplicitWidth = 585
+    ExplicitHeight = 170
+    object cxGrid1DBTableView1: TcxGridDBTableView
+      Navigator.Buttons.CustomButtons = <>
+      DataController.Summary.DefaultGroupSummaryItems = <>
+      DataController.Summary.FooterSummaryItems = <>
+      DataController.Summary.SummaryGroups = <>
+    end
+    object cxGrid1Level1: TcxGridLevel
+      GridView = cxGrid1DBTableView1
+    end
+  end
+end

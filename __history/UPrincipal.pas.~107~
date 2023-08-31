@@ -24,7 +24,7 @@ uses
   dxSkinsForm, cxControls, cxContainer, cxEdit, cxGroupBox, cxMaskEdit, cxLabel,
   cxTextEdit, cxDropDownEdit, cxCalc, Vcl.ComCtrls, dxCore, cxDateUtils,
   cxCalendar,
-  System.IniFiles, cxSpinEdit, cxDBEdit, UDM
+  System.IniFiles, cxSpinEdit, cxDBEdit, UDM, UUtil , UBusca
   ;
 
 type
@@ -35,7 +35,6 @@ type
     BtnExcluir: TcxButton;
     BtnCancelar: TcxButton;
     BtnRelatorio: TcxButton;
-    BtnPesquisa: TcxButton;
     Panel2: TPanel;
     cxGroupBox1: TcxGroupBox;
     cxGroupBox2: TcxGroupBox;
@@ -75,6 +74,10 @@ type
     procedure BtnCancelarClick(Sender: TObject);
     procedure SpnCodigoExit(Sender: TObject);
     procedure SpnCodigoEnter(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure BtnRelatorioClick(Sender: TObject);
+    procedure FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -92,6 +95,7 @@ type
 var
   FrmPrincipal: TFrmPrincipal;
   Config : TIniFile;
+  Busca : TFrmBusca;
 
 const
   ESTADO_NOVO      = 1;
@@ -108,14 +112,49 @@ implementation
 { TFrmPrincipal }
 
 procedure TFrmPrincipal.AlterarOuInserir;
+var Cliente : TCliente;
 begin
-
+  Cliente := TCliente.Create;
+  try
+    try
+      with Cliente do
+      begin
+        if SpnCodigo.Text <> '' then
+          Codigo :=  SpnCodigo.Value;
+        Nome       := EdtNome.Text;
+        CPF        := TUtil.RemoveMascara(MskCPF);
+        RG         := EdtRG.Text;
+        CNPJ       := TUtil.RemoveMascara(MskCNPJ);
+        Endereco   := EdtEndereco.Text;
+        Numero     := EdtNumero.Text;
+        CEP        := TUtil.RemoveMascara(MskCEP);
+        Cidade     := EdtCidade.Text;
+        UF         := EdtUF.Text;
+        if ClcLimiteCredito.Text <> '' then
+          LimiteCredito := ClcLimiteCredito.Value;
+        DataNascimento := DteNascimento.Date;
+        RazaoSocial    := EdtRazaoSocial.Text;
+        NomeFantasia   := EdtNomeFantasia.Text;
+      end;
+      if (Cliente.Codigo = 0) then
+        DM.Insert(Cliente)
+      else
+        DM.Update(Cliente);
+      ShowMessage('Registro gravado com Sucesso!');
+    except
+      on E:Exception do
+        ShowMessage('Ocorreu um erro ao inserir : '+E.Message);
+    end;
+  finally
+    FreeAndNil(Cliente);
+  end;
 end;
 
 procedure TFrmPrincipal.BtnAlterarClick(Sender: TObject);
 begin
-  EstadoBotoes(ESTADO_INSERIR);
   AlterarOuInserir();
+  EstadoBotoes(ESTADO_INSERIR);
+  ResetarForm;
 end;
 
 procedure TFrmPrincipal.BtnCancelarClick(Sender: TObject);
@@ -134,6 +173,13 @@ procedure TFrmPrincipal.BtnNovoClick(Sender: TObject);
 begin
   EstadoBotoes(ESTADO_NOVO);
   EdtNome.SetFocus;
+end;
+
+procedure TFrmPrincipal.BtnRelatorioClick(Sender: TObject);
+begin
+  DM.QryClientes.Close;
+  DM.QryClientes.Open;
+  DM.frxRepClientes.ShowReport(True);
 end;
 
 function TFrmPrincipal.ClienteToForm(Value : TCliente): Boolean;
@@ -272,10 +318,45 @@ begin
   BtnCancelarClick(Self);
 end;
 
+procedure TFrmPrincipal.FormCreate(Sender: TObject);
+begin
+  if FileExists(ExtractFilePath(Application.ExeName)+'\TraducaoDev2.ini') then {Verifica se existe o arquivo dentro da pasta}
+  begin
+    cxLocalizer.LoadFromFile(ExtractFilePath(Application.ExeName)+'\TraducaoDev2.ini');
+    cxLocalizer.LanguageIndex := 1; {Muda o idioma / linguagem}
+    cxLocalizer.Active := TRUE;     {Ativa o componente / a tradução}
+   end;
+end;
+
+procedure TFrmPrincipal.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+  begin
+    Key := #0;
+    Perform(WM_NEXTDLGCTL, 0, 0);
+  end;
+end;
+
+procedure TFrmPrincipal.FormKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if Key = VK_F3 then
+  begin
+    try
+      Busca := TFrmBusca.Create(Self);
+      Busca.ShowModal;
+    finally
+      FreeAndNil(Busca);
+    end;
+  end;
+
+end;
+
 procedure TFrmPrincipal.FormShow(Sender: TObject);
 begin
  Conectar;
  EstadoBotoes(ESTADO_PRONTO);
+ SpnCodigo.SetFocus;
 end;
 
 function TFrmPrincipal.FormToCliente: TCliente;
@@ -322,6 +403,7 @@ end;
 procedure TFrmPrincipal.SpnCodigoEnter(Sender: TObject);
 begin
   ResetarForm;
+  SpnCodigo.SelectAll;
 end;
 
 procedure TFrmPrincipal.SpnCodigoExit(Sender: TObject);

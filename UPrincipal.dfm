@@ -13,7 +13,9 @@ object FrmPrincipal: TFrmPrincipal
   KeyPreview = True
   OldCreateOrder = False
   Position = poScreenCenter
+  OnCreate = FormCreate
   OnKeyPress = FormKeyPress
+  OnKeyUp = FormKeyUp
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -104,20 +106,6 @@ object FrmPrincipal: TFrmPrincipal
       ParentFont = False
       OnClick = BtnRelatorioClick
     end
-    object BtnPesquisa: TcxButton
-      Left = 562
-      Top = 18
-      Width = 90
-      Height = 60
-      Caption = 'Pesquisa'
-      TabOrder = 5
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -16
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
     object SpnCodigo: TcxSpinEdit
       Left = 9
       Top = 32
@@ -129,7 +117,7 @@ object FrmPrincipal: TFrmPrincipal
       Style.Font.Name = 'Tahoma'
       Style.Font.Style = []
       Style.IsFontAssigned = True
-      TabOrder = 6
+      TabOrder = 5
       Value = 1
       OnEnter = SpnCodigoEnter
       OnExit = SpnCodigoExit
@@ -332,5 +320,9 @@ object FrmPrincipal: TFrmPrincipal
         Width = 166
       end
     end
+  end
+  object cxLocalizer: TcxLocalizer
+    Left = 568
+    Top = 32
   end
 end

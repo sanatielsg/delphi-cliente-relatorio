@@ -10,8 +10,10 @@ object FrmPrincipal: TFrmPrincipal
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  KeyPreview = True
   OldCreateOrder = False
   Position = poScreenCenter
+  OnKeyPress = FormKeyPress
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -100,33 +102,20 @@ object FrmPrincipal: TFrmPrincipal
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-    end
-    object BtnPesquisa: TcxButton
-      Left = 562
-      Top = 18
-      Width = 90
-      Height = 60
-      Caption = 'Pesquisa'
-      TabOrder = 5
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -16
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
+      OnClick = BtnRelatorioClick
     end
     object SpnCodigo: TcxSpinEdit
       Left = 9
       Top = 32
       ParentFont = False
-      Properties.MinValue = 1.000000000000000000
+      Properties.AssignedValues.MinValue = True
       Style.Font.Charset = DEFAULT_CHARSET
       Style.Font.Color = clWindowText
       Style.Font.Height = -24
       Style.Font.Name = 'Tahoma'
       Style.Font.Style = []
       Style.IsFontAssigned = True
-      TabOrder = 6
+      TabOrder = 5
       Value = 1
       OnEnter = SpnCodigoEnter
       OnExit = SpnCodigoExit
@@ -143,9 +132,6 @@ object FrmPrincipal: TFrmPrincipal
     Color = clGradientActiveCaption
     ParentBackground = False
     TabOrder = 1
-    ExplicitTop = 119
-    ExplicitWidth = 713
-    ExplicitHeight = 266
     object cxGroupBox1: TcxGroupBox
       Left = 9
       Top = 6
@@ -156,6 +142,7 @@ object FrmPrincipal: TFrmPrincipal
       object EdtNome: TcxTextEdit
         Left = 8
         Top = 33
+        Properties.CharCase = ecUpperCase
         TabOrder = 0
         Width = 337
       end
@@ -215,6 +202,7 @@ object FrmPrincipal: TFrmPrincipal
       object EdtRazaoSocial: TcxTextEdit
         Left = 5
         Top = 33
+        Properties.CharCase = ecUpperCase
         TabOrder = 1
         Width = 366
       end
@@ -226,6 +214,7 @@ object FrmPrincipal: TFrmPrincipal
       object EdtNomeFantasia: TcxTextEdit
         Left = 5
         Top = 73
+        Properties.CharCase = ecUpperCase
         TabOrder = 3
         Width = 366
       end
@@ -258,6 +247,7 @@ object FrmPrincipal: TFrmPrincipal
       object EdtEndereco: TcxTextEdit
         Left = 8
         Top = 33
+        Properties.CharCase = ecUpperCase
         TabOrder = 1
         Width = 337
       end

@@ -76,6 +76,7 @@ type
     procedure SpnCodigoExit(Sender: TObject);
     procedure SpnCodigoEnter(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure BtnRelatorioClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -119,20 +120,19 @@ begin
         if SpnCodigo.Text <> '' then
           Codigo :=  SpnCodigo.Value;
         Nome       := EdtNome.Text;
-        CPF        := TUtil.RemoveMascara(EdtCadCPF);
-        RG         := EdtCadRG.Text;
-        CNPJ       := TUtil.RemoveMascara(EdtCadCNPJ);
-        TipoPessoa := RgpCadTipoPessoa.ItemIndex + 1;
-        Endereco   := EdtCadEndereco.Text;
-        Numero     := EdtCadNumero.Text;
-        CEP        := TUtil.RemoveMascara(EdtCadCEP);
-        Cidade     := EdtCadCidade.Text;
-        UF         := EdtCadUF.Text;
-        if EdtCadLimite.Text <> '' then
-          LimiteCredito := StrToFloat(EdtCadLimite.Text);
-        DataNascimento := DTPCadDataNascimento.Date;
-        RazaoSocial    := EdtCadRazaoSocial.Text;
-        NomeFantasia   := EdtCadFantasia.Text;
+        CPF        := TUtil.RemoveMascara(MskCPF);
+        RG         := EdtRG.Text;
+        CNPJ       := TUtil.RemoveMascara(MskCNPJ);
+        Endereco   := EdtEndereco.Text;
+        Numero     := EdtNumero.Text;
+        CEP        := TUtil.RemoveMascara(MskCEP);
+        Cidade     := EdtCidade.Text;
+        UF         := EdtUF.Text;
+        if ClcLimiteCredito.Text <> '' then
+          LimiteCredito := ClcLimiteCredito.Value;
+        DataNascimento := DteNascimento.Date;
+        RazaoSocial    := EdtRazaoSocial.Text;
+        NomeFantasia   := EdtNomeFantasia.Text;
       end;
       if (Cliente.Codigo = 0) then
         DM.Insert(Cliente)
@@ -150,8 +150,9 @@ end;
 
 procedure TFrmPrincipal.BtnAlterarClick(Sender: TObject);
 begin
-  EstadoBotoes(ESTADO_INSERIR);
   AlterarOuInserir();
+  EstadoBotoes(ESTADO_INSERIR);
+  ResetarForm;
 end;
 
 procedure TFrmPrincipal.BtnCancelarClick(Sender: TObject);
@@ -170,6 +171,13 @@ procedure TFrmPrincipal.BtnNovoClick(Sender: TObject);
 begin
   EstadoBotoes(ESTADO_NOVO);
   EdtNome.SetFocus;
+end;
+
+procedure TFrmPrincipal.BtnRelatorioClick(Sender: TObject);
+begin
+  DM.QryClientes.Close;
+  DM.QryClientes.Open;
+  DM.frxRepClientes.ShowReport(True);
 end;
 
 function TFrmPrincipal.ClienteToForm(Value : TCliente): Boolean;
