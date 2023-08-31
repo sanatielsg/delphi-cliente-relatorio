@@ -25,7 +25,7 @@ object FrmPrincipal: TFrmPrincipal
     TabOrder = 0
     object BtnNovo: TcxButton
       Left = 154
-      Top = 13
+      Top = 18
       Width = 90
       Height = 60
       Caption = 'Novo'
@@ -41,7 +41,7 @@ object FrmPrincipal: TFrmPrincipal
     end
     object BtnAlterar: TcxButton
       Left = 250
-      Top = 13
+      Top = 18
       Width = 90
       Height = 60
       Caption = 'Inserir'
@@ -57,7 +57,7 @@ object FrmPrincipal: TFrmPrincipal
     end
     object BtnExcluir: TcxButton
       Left = 346
-      Top = 13
+      Top = 18
       Width = 90
       Height = 60
       Caption = 'Excluir'
@@ -73,7 +73,7 @@ object FrmPrincipal: TFrmPrincipal
     end
     object BtnCancelar: TcxButton
       Left = 442
-      Top = 13
+      Top = 18
       Width = 90
       Height = 60
       Caption = 'Cancelar'
@@ -89,7 +89,7 @@ object FrmPrincipal: TFrmPrincipal
     end
     object BtnRelatorio: TcxButton
       Left = 658
-      Top = 13
+      Top = 18
       Width = 90
       Height = 60
       Caption = 'Relat'#243'rio'
@@ -103,7 +103,7 @@ object FrmPrincipal: TFrmPrincipal
     end
     object BtnPesquisa: TcxButton
       Left = 562
-      Top = 13
+      Top = 18
       Width = 90
       Height = 60
       Caption = 'Pesquisa'
@@ -115,10 +115,12 @@ object FrmPrincipal: TFrmPrincipal
       Font.Style = []
       ParentFont = False
     end
-    object cxDBSpinEdit1: TcxDBSpinEdit
-      Left = 16
+    object SpnCodigo: TcxSpinEdit
+      Left = 9
       Top = 32
       ParentFont = False
+      Properties.MinValue = 1.000000000000000000
+      Properties.OnChange = SpnCodigoPropertiesChange
       Style.Font.Charset = DEFAULT_CHARSET
       Style.Font.Color = clWindowText
       Style.Font.Height = -24
@@ -126,6 +128,9 @@ object FrmPrincipal: TFrmPrincipal
       Style.Font.Style = []
       Style.IsFontAssigned = True
       TabOrder = 6
+      Value = 1
+      OnEnter = SpnCodigoEnter
+      OnExit = SpnCodigoExit
       Width = 121
     end
   end
