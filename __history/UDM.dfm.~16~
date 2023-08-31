@@ -1,7 +1,7 @@
 object DM: TDM
   OldCreateOrder = False
   Height = 380
-  Width = 459
+  Width = 627
   object Conn: TFDConnection
     Params.Strings = (
       'Port='
@@ -16,15 +16,15 @@ object DM: TDM
   end
   object Query: TFDQuery
     Connection = Conn
-    Left = 88
-    Top = 152
+    Left = 152
+    Top = 136
   end
   object QryClientes: TFDQuery
     Connection = Conn
     SQL.Strings = (
       'select * from cliente order by cli_codigo')
-    Left = 200
-    Top = 216
+    Left = 248
+    Top = 192
     object QryClientescli_codigo: TIntegerField
       FieldName = 'cli_codigo'
       Origin = 'cli_codigo'
@@ -101,8 +101,8 @@ object DM: TDM
   end
   object DSClientes: TDataSource
     DataSet = QryClientes
-    Left = 208
-    Top = 280
+    Left = 256
+    Top = 256
   end
   object frxRepClientes: TfrxReport
     Version = '6.7.9'
@@ -113,15 +113,15 @@ object DM: TDM
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 45169.034249398150000000
-    ReportOptions.LastChange = 45169.607709120370000000
+    ReportOptions.LastChange = 45169.580252858800000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       ''
       'begin'
       ''
       'end.')
-    Left = 328
-    Top = 208
+    Left = 400
+    Top = 200
     Datasets = <
       item
         DataSet = frxDBDataset
@@ -227,13 +227,12 @@ object DM: TDM
       object PageHeader1: TfrxPageHeader
         FillType = ftBrush
         Frame.Typ = []
-        Height = 27.102350000000000000
+        Height = 22.677180000000000000
         Top = 68.031540000000000000
         Width = 1046.929810000000000000
         object Memo2: TfrxMemoView
           AllowVectorExport = True
-          Left = -3.779530000000000000
-          Width = 1046.929133860000000000
+          Width = 1046.929133858268000000
           Height = 22.677180000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -247,7 +246,6 @@ object DM: TDM
         end
         object Memo3: TfrxMemoView
           AllowVectorExport = True
-          Top = 4.425170000000000000
           Width = 62.476589400000000000
           Height = 22.677180000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -263,9 +261,8 @@ object DM: TDM
         end
         object Memo4: TfrxMemoView
           AllowVectorExport = True
-          Left = 63.256119400000000000
-          Top = 4.204700000000000000
-          Width = 335.021627760000000000
+          Left = 62.476589400000000000
+          Width = 55.336407760000000000
           Height = 22.677180000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -280,9 +277,8 @@ object DM: TDM
         end
         object Memo5: TfrxMemoView
           AllowVectorExport = True
-          Left = 518.443177160000000000
-          Top = 4.204700000000000000
-          Width = 109.087584470000000000
+          Left = 117.812997160000000000
+          Width = 41.056044470000000000
           Height = 22.677180000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -295,11 +291,26 @@ object DM: TDM
           ParentFont = False
           Style = 'Header'
         end
+        object Memo6: TfrxMemoView
+          AllowVectorExport = True
+          Left = 158.869041630000000000
+          Width = 34.808385520000000000
+          Height = 22.677180000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'RG')
+          ParentFont = False
+          Style = 'Header'
+        end
         object Memo7: TfrxMemoView
           AllowVectorExport = True
-          Left = 911.788127150000000000
-          Top = 4.204700000000000000
-          Width = 126.673833410000000000
+          Left = 193.677427150000000000
+          Width = 47.303703410000000000
           Height = 22.677180000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -312,11 +323,122 @@ object DM: TDM
           ParentFont = False
           Style = 'Header'
         end
+        object Memo8: TfrxMemoView
+          AllowVectorExport = True
+          Left = 240.981130560000000000
+          Width = 75.864429990000000000
+          Height = 22.677180000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Endere'#231'o')
+          ParentFont = False
+          Style = 'Header'
+        end
+        object Memo9: TfrxMemoView
+          AllowVectorExport = True
+          Left = 316.845560550000000000
+          Width = 66.939202930000000000
+          Height = 22.677180000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'N'#250'mero')
+          ParentFont = False
+          Style = 'Header'
+        end
+        object Memo10: TfrxMemoView
+          AllowVectorExport = True
+          Left = 383.784763480000000000
+          Width = 43.733612580000000000
+          Height = 22.677180000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'CEP')
+          ParentFont = False
+          Style = 'Header'
+        end
+        object Memo11: TfrxMemoView
+          AllowVectorExport = True
+          Left = 427.518376060000000000
+          Width = 60.691543990000000000
+          Height = 22.677180000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Cidade')
+          ParentFont = False
+          Style = 'Header'
+        end
+        object Memo12: TfrxMemoView
+          AllowVectorExport = True
+          Left = 488.209920050000000000
+          Width = 34.808385520000000000
+          Height = 22.677180000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'UF')
+          ParentFont = False
+          Style = 'Header'
+        end
+        object Memo13: TfrxMemoView
+          AllowVectorExport = True
+          Left = 523.018305580000000000
+          Width = 99.962543050000000000
+          Height = 22.677180000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Limite')
+          ParentFont = False
+          Style = 'Header'
+        end
+        object Memo14: TfrxMemoView
+          AllowVectorExport = True
+          Left = 622.980848620000000000
+          Width = 94.607406810000000000
+          Height = 22.677180000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Raz'#227'o Social')
+          ParentFont = False
+          Style = 'Header'
+        end
         object Memo15: TfrxMemoView
           AllowVectorExport = True
-          Left = 626.879535430000000000
-          Top = 4.204700000000000000
-          Width = 283.848111990000000000
+          Left = 717.588255430000000000
+          Width = 106.210201990000000000
           Height = 22.677180000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -331,8 +453,7 @@ object DM: TDM
         end
         object Memo16: TfrxMemoView
           AllowVectorExport = True
-          Left = 396.711567420000000000
-          Top = 4.204700000000000000
+          Left = 823.798457420000000000
           Width = 120.490565280000000000
           Height = 22.677180000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -346,12 +467,28 @@ object DM: TDM
           ParentFont = False
           Style = 'Header'
         end
+        object Memo17: TfrxMemoView
+          AllowVectorExport = True
+          Left = 944.289022700000000000
+          Width = 102.640111160000000000
+          Height = 22.677180000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Dt.Hr.Registro')
+          ParentFont = False
+          Style = 'Header'
+        end
       end
       object MasterData1: TfrxMasterData
         FillType = ftBrush
         Frame.Typ = []
         Height = 18.897650000000000000
-        Top = 154.960730000000000000
+        Top = 151.181200000000000000
         Width = 1046.929810000000000000
         DataSet = frxDBDataset
         DataSetName = 'frxDBDataset'
@@ -376,8 +513,8 @@ object DM: TDM
         end
         object Memo19: TfrxMemoView
           AllowVectorExport = True
-          Left = 62.476589400000000000
-          Width = 331.242097760000000000
+          Left = 62.476589403306680000
+          Width = 55.336407757214490000
           Height = 18.897650000000000000
           DataField = 'cli_nome'
           DataSet = frxDBDataset
@@ -395,8 +532,8 @@ object DM: TDM
         end
         object Memo20: TfrxMemoView
           AllowVectorExport = True
-          Left = 518.443177160000000000
-          Width = 109.087584470000000000
+          Left = 117.812997160521200000
+          Width = 41.056044465030110000
           Height = 18.897650000000000000
           DataField = 'cli_cpf'
           DataSet = frxDBDataset
@@ -412,10 +549,29 @@ object DM: TDM
           ParentFont = False
           Style = 'Data'
         end
+        object Memo21: TfrxMemoView
+          AllowVectorExport = True
+          Left = 158.869041625551300000
+          Width = 34.808385524699440000
+          Height = 18.897650000000000000
+          DataField = 'cli_rg'
+          DataSet = frxDBDataset
+          DataSetName = 'frxDBDataset'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBDataset."cli_rg"]')
+          ParentFont = False
+          Style = 'Data'
+        end
         object Memo22: TfrxMemoView
           AllowVectorExport = True
-          Left = 911.788127150000000000
-          Width = 126.673833410000000000
+          Left = 193.677427150250700000
+          Width = 47.303703405360770000
           Height = 18.897650000000000000
           DataField = 'cli_cnpj'
           DataSet = frxDBDataset
@@ -431,10 +587,143 @@ object DM: TDM
           ParentFont = False
           Style = 'Data'
         end
+        object Memo23: TfrxMemoView
+          AllowVectorExport = True
+          Left = 240.981130555611500000
+          Width = 75.864429989729540000
+          Height = 18.897650000000000000
+          DataField = 'cli_endereco'
+          DataSet = frxDBDataset
+          DataSetName = 'frxDBDataset'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBDataset."cli_endereco"]')
+          ParentFont = False
+          Style = 'Data'
+        end
+        object Memo24: TfrxMemoView
+          AllowVectorExport = True
+          Left = 316.845560545341000000
+          Width = 66.939202932114300000
+          Height = 18.897650000000000000
+          DataField = 'cli_numero'
+          DataSet = frxDBDataset
+          DataSetName = 'frxDBDataset'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBDataset."cli_numero"]')
+          ParentFont = False
+          Style = 'Data'
+        end
+        object Memo25: TfrxMemoView
+          AllowVectorExport = True
+          Left = 383.784763477455300000
+          Width = 43.733612582314680000
+          Height = 18.897650000000000000
+          DataField = 'cli_cep'
+          DataSet = frxDBDataset
+          DataSetName = 'frxDBDataset'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBDataset."cli_cep"]')
+          ParentFont = False
+          Style = 'Data'
+        end
+        object Memo26: TfrxMemoView
+          AllowVectorExport = True
+          Left = 427.518376059770000000
+          Width = 60.691543991783640000
+          Height = 18.897650000000000000
+          DataField = 'cli_cidade'
+          DataSet = frxDBDataset
+          DataSetName = 'frxDBDataset'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBDataset."cli_cidade"]')
+          ParentFont = False
+          Style = 'Data'
+        end
+        object Memo27: TfrxMemoView
+          AllowVectorExport = True
+          Left = 488.209920051553700000
+          Width = 34.808385524699440000
+          Height = 18.897650000000000000
+          DataField = 'cli_uf'
+          DataSet = frxDBDataset
+          DataSetName = 'frxDBDataset'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBDataset."cli_uf"]')
+          ParentFont = False
+          Style = 'Data'
+        end
+        object Memo28: TfrxMemoView
+          AllowVectorExport = True
+          Left = 523.018305576253100000
+          Width = 99.962543045290690000
+          Height = 18.897650000000000000
+          DataField = 'cli_limite_credito'
+          DataSet = frxDBDataset
+          DataSetName = 'frxDBDataset'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBDataset."cli_limite_credito"]')
+          ParentFont = False
+          Style = 'Data'
+        end
+        object Memo29: TfrxMemoView
+          AllowVectorExport = True
+          Left = 622.980848621543800000
+          Width = 94.607406810721550000
+          Height = 18.897650000000000000
+          DataField = 'cli_razao_social'
+          DataSet = frxDBDataset
+          DataSetName = 'frxDBDataset'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBDataset."cli_razao_social"]')
+          ParentFont = False
+          Style = 'Data'
+        end
         object Memo30: TfrxMemoView
           AllowVectorExport = True
-          Left = 626.879535430000000000
-          Width = 283.848111990000000000
+          Left = 717.588255432265300000
+          Width = 106.210201985621400000
           Height = 18.897650000000000000
           DataField = 'cli_nome_fantasia'
           DataSet = frxDBDataset
@@ -452,8 +741,8 @@ object DM: TDM
         end
         object Memo31: TfrxMemoView
           AllowVectorExport = True
-          Left = 395.152507420000000000
-          Width = 120.490565280000000000
+          Left = 823.798457417886700000
+          Width = 120.490565277805700000
           Height = 18.897650000000000000
           DataField = 'cli_data_nascimento'
           DataSet = frxDBDataset
@@ -469,12 +758,31 @@ object DM: TDM
           ParentFont = False
           Style = 'Data'
         end
+        object Memo32: TfrxMemoView
+          AllowVectorExport = True
+          Left = 944.289022695692500000
+          Width = 102.640111162575300000
+          Height = 18.897650000000000000
+          DataField = 'cli_dthr_cadastro'
+          DataSet = frxDBDataset
+          DataSetName = 'frxDBDataset'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBDataset."cli_dthr_cadastro"]')
+          ParentFont = False
+          Style = 'Data'
+        end
       end
       object PageFooter1: TfrxPageFooter
         FillType = ftBrush
         Frame.Typ = []
         Height = 26.456710000000000000
-        Top = 234.330860000000000000
+        Top = 230.551330000000000000
         Width = 1046.929810000000000000
         object Memo33: TfrxMemoView
           Align = baWidth
@@ -512,7 +820,23 @@ object DM: TDM
     CloseDataSource = False
     DataSet = QryClientes
     BCDToCurrency = False
-    Left = 328
-    Top = 272
+    Left = 400
+    Top = 264
+  end
+  object ConnT: TFDConnection
+    Params.Strings = (
+      'Database=programa'
+      'User_Name=postgres'
+      'Password=Super@321'
+      'DriverID=PG')
+    LoginPrompt = False
+    Left = 40
+    Top = 280
+  end
+  object DriverLinkT: TFDPhysPgDriverLink
+    VendorHome = 'C:\Program Files (x86)\PostgreSQL\9.6'
+    VendorLib = 'libpq.dll'
+    Left = 104
+    Top = 280
   end
 end

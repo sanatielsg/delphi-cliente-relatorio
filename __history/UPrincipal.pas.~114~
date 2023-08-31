@@ -24,7 +24,7 @@ uses
   dxSkinsForm, cxControls, cxContainer, cxEdit, cxGroupBox, cxMaskEdit, cxLabel,
   cxTextEdit, cxDropDownEdit, cxCalc, Vcl.ComCtrls, dxCore, cxDateUtils,
   cxCalendar,
-  System.IniFiles, cxSpinEdit, cxDBEdit, UDM, UUtil , UBusca
+  System.IniFiles, cxSpinEdit, cxDBEdit, UDM, UUtil , UBusca, cxLocalization
   ;
 
 type
@@ -67,6 +67,7 @@ type
     DteNascimento: TcxDateEdit;
     cxLabel13: TcxLabel;
     SpnCodigo: TcxSpinEdit;
+    cxLocalizer: TcxLocalizer;
     procedure FormShow(Sender: TObject);
     procedure BtnNovoClick(Sender: TObject);
     procedure BtnAlterarClick(Sender: TObject);
@@ -345,6 +346,11 @@ begin
     try
       Busca := TFrmBusca.Create(Self);
       Busca.ShowModal;
+      if Busca.ModalResult = mrOk then
+      begin
+        SpnCodigo.Value := Busca.Selecionado();
+        ConsultarCliente;
+      end;
     finally
       FreeAndNil(Busca);
     end;

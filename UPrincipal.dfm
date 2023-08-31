@@ -43,12 +43,12 @@ object FrmPrincipal: TFrmPrincipal
       ParentFont = False
       OnClick = BtnNovoClick
     end
-    object BtnAlterar: TcxButton
+    object BtnConfirmar: TcxButton
       Left = 250
       Top = 18
       Width = 90
       Height = 60
-      Caption = 'Inserir'
+      Caption = 'Alterar'
       Enabled = False
       TabOrder = 1
       Font.Charset = DEFAULT_CHARSET
@@ -57,7 +57,7 @@ object FrmPrincipal: TFrmPrincipal
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      OnClick = BtnAlterarClick
+      OnClick = BtnConfirmarClick
     end
     object BtnExcluir: TcxButton
       Left = 346
@@ -134,10 +134,11 @@ object FrmPrincipal: TFrmPrincipal
     Color = clGradientActiveCaption
     ParentBackground = False
     TabOrder = 1
-    object cxGroupBox1: TcxGroupBox
+    object GbxPF: TcxGroupBox
       Left = 9
       Top = 6
       Caption = 'Dados Pessoa F'#237'sica'
+      Enabled = False
       TabOrder = 0
       Height = 154
       Width = 354
@@ -189,10 +190,11 @@ object FrmPrincipal: TFrmPrincipal
         Caption = 'Nascimento'
       end
     end
-    object cxGroupBox2: TcxGroupBox
+    object GbxPJ: TcxGroupBox
       Left = 377
       Top = 6
       Caption = 'Dados Pessoa Jur'#237'dica'
+      Enabled = False
       TabOrder = 1
       Height = 154
       Width = 379
@@ -234,10 +236,11 @@ object FrmPrincipal: TFrmPrincipal
         Width = 121
       end
     end
-    object cxGroupBox3: TcxGroupBox
+    object GbxEndereco: TcxGroupBox
       Left = 9
       Top = 166
       Caption = 'Dados de Endere'#231'o'
+      Enabled = False
       TabOrder = 2
       Height = 154
       Width = 354
@@ -300,10 +303,11 @@ object FrmPrincipal: TFrmPrincipal
         Width = 37
       end
     end
-    object cxGroupBox4: TcxGroupBox
+    object GbxFinanceiro: TcxGroupBox
       Left = 377
       Top = 166
       Caption = 'Dados Financeiros'
+      Enabled = False
       TabOrder = 3
       Height = 154
       Width = 379

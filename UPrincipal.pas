@@ -31,15 +31,15 @@ type
   TFrmPrincipal = class(TForm)
     Panel1: TPanel;
     BtnNovo: TcxButton;
-    BtnAlterar: TcxButton;
+    BtnConfirmar: TcxButton;
     BtnExcluir: TcxButton;
     BtnCancelar: TcxButton;
     BtnRelatorio: TcxButton;
     Panel2: TPanel;
-    cxGroupBox1: TcxGroupBox;
-    cxGroupBox2: TcxGroupBox;
-    cxGroupBox3: TcxGroupBox;
-    cxGroupBox4: TcxGroupBox;
+    GbxPF: TcxGroupBox;
+    GbxPJ: TcxGroupBox;
+    GbxEndereco: TcxGroupBox;
+    GbxFinanceiro: TcxGroupBox;
     EdtNome: TcxTextEdit;
     cxLabel1: TcxLabel;
     MskCPF: TcxMaskEdit;
@@ -70,7 +70,7 @@ type
     cxLocalizer: TcxLocalizer;
     procedure FormShow(Sender: TObject);
     procedure BtnNovoClick(Sender: TObject);
-    procedure BtnAlterarClick(Sender: TObject);
+    procedure BtnConfirmarClick(Sender: TObject);
     procedure BtnExcluirClick(Sender: TObject);
     procedure BtnCancelarClick(Sender: TObject);
     procedure SpnCodigoExit(Sender: TObject);
@@ -91,6 +91,7 @@ type
     procedure AlterarOuInserir;
     procedure ResetarForm;
     procedure Excluir();
+    procedure HabilitarForm(Value: Boolean);
   end;
 
 var
@@ -151,7 +152,7 @@ begin
   end;
 end;
 
-procedure TFrmPrincipal.BtnAlterarClick(Sender: TObject);
+procedure TFrmPrincipal.BtnConfirmarClick(Sender: TObject);
 begin
   AlterarOuInserir();
   EstadoBotoes(ESTADO_INSERIR);
@@ -162,6 +163,7 @@ procedure TFrmPrincipal.BtnCancelarClick(Sender: TObject);
 begin
   EstadoBotoes(ESTADO_CANCELAR);
   ResetarForm;
+  HabilitarForm(False);
 end;
 
 procedure TFrmPrincipal.BtnExcluirClick(Sender: TObject);
@@ -173,6 +175,7 @@ end;
 procedure TFrmPrincipal.BtnNovoClick(Sender: TObject);
 begin
   EstadoBotoes(ESTADO_NOVO);
+  HabilitarForm(True);
   EdtNome.SetFocus;
 end;
 
@@ -252,9 +255,11 @@ begin
     begin
       ClienteToForm(Cliente);
       EstadoBotoes(ESTADO_CONSULTAR);
+      HabilitarForm(True);
     end else
     begin
       EstadoBotoes(ESTADO_CANCELAR);
+      HabilitarForm(False);
     end;
   finally
     FreeAndNil(Cliente);
@@ -266,8 +271,8 @@ begin
   case Value of
    ESTADO_NOVO : begin
       BtnNovo.Enabled     := False;
-      BtnAlterar.Enabled  := True;
-      BtnAlterar.Caption  := 'Inserir';
+      BtnConfirmar.Enabled  := True;
+      BtnConfirmar.Caption  := 'Inserir';
       BtnExcluir.Enabled  := False;
       BtnCancelar.Enabled := True;
       SpnCodigo.Value     := 0;
@@ -275,7 +280,7 @@ begin
    end;
    ESTADO_INSERIR..ESTADO_CANCELAR : begin
       BtnNovo.Enabled     := True;
-      BtnAlterar.Enabled  := False;
+      BtnConfirmar.Enabled  := False;
       BtnExcluir.Enabled  := False;
       BtnCancelar.Enabled := False;
       SpnCodigo.Value     := 0;
@@ -283,15 +288,15 @@ begin
    end;
    ESTADO_CONSULTAR : begin
       BtnNovo.Enabled     := False;
-      BtnAlterar.Enabled  := True;
-      BtnAlterar.Caption  := 'Alterar';
+      BtnConfirmar.Enabled  := True;
+      BtnConfirmar.Caption  := 'Alterar';
       BtnExcluir.Enabled  := True;
       BtnCancelar.Enabled := True;
       SpnCodigo.Enabled   := False;
    end;
    ESTADO_PRONTO : begin
       BtnNovo.Enabled     := True;
-      BtnAlterar.Enabled  := False;
+      BtnConfirmar.Enabled  := False;
       BtnExcluir.Enabled  := False;
       BtnCancelar.Enabled := False;
       SpnCodigo.Value     := 0;
@@ -387,6 +392,14 @@ begin
     LimiteCredito             := StrToFloat(ClcLimiteCredito.Text);
   end;
   Result := Cliente;
+end;
+
+procedure TFrmPrincipal.HabilitarForm(Value: Boolean);
+begin
+  GbxPF.Enabled := Value;
+  GbxPJ.Enabled := Value;
+  GbxEndereco.Enabled := Value;
+  GbxFinanceiro.Enabled := Value;
 end;
 
 procedure TFrmPrincipal.ResetarForm;

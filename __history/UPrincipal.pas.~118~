@@ -24,7 +24,7 @@ uses
   dxSkinsForm, cxControls, cxContainer, cxEdit, cxGroupBox, cxMaskEdit, cxLabel,
   cxTextEdit, cxDropDownEdit, cxCalc, Vcl.ComCtrls, dxCore, cxDateUtils,
   cxCalendar,
-  System.IniFiles, cxSpinEdit, cxDBEdit, UDM, UUtil , UBusca
+  System.IniFiles, cxSpinEdit, cxDBEdit, UDM, UUtil , UBusca, cxLocalization
   ;
 
 type
@@ -36,10 +36,10 @@ type
     BtnCancelar: TcxButton;
     BtnRelatorio: TcxButton;
     Panel2: TPanel;
-    cxGroupBox1: TcxGroupBox;
-    cxGroupBox2: TcxGroupBox;
-    cxGroupBox3: TcxGroupBox;
-    cxGroupBox4: TcxGroupBox;
+    GbxPF: TcxGroupBox;
+    GbxPJ: TcxGroupBox;
+    GbxEndereco: TcxGroupBox;
+    GbxFinanceiro: TcxGroupBox;
     EdtNome: TcxTextEdit;
     cxLabel1: TcxLabel;
     MskCPF: TcxMaskEdit;
@@ -67,6 +67,7 @@ type
     DteNascimento: TcxDateEdit;
     cxLabel13: TcxLabel;
     SpnCodigo: TcxSpinEdit;
+    cxLocalizer: TcxLocalizer;
     procedure FormShow(Sender: TObject);
     procedure BtnNovoClick(Sender: TObject);
     procedure BtnAlterarClick(Sender: TObject);
@@ -77,6 +78,7 @@ type
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure BtnRelatorioClick(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -89,6 +91,7 @@ type
     procedure AlterarOuInserir;
     procedure ResetarForm;
     procedure Excluir();
+    procedure HabilitarForm(Value: Boolean);
   end;
 
 var
@@ -171,6 +174,7 @@ end;
 procedure TFrmPrincipal.BtnNovoClick(Sender: TObject);
 begin
   EstadoBotoes(ESTADO_NOVO);
+  HabilitarForm(True);
   EdtNome.SetFocus;
 end;
 
@@ -317,6 +321,16 @@ begin
   BtnCancelarClick(Self);
 end;
 
+procedure TFrmPrincipal.FormCreate(Sender: TObject);
+begin
+  if FileExists(ExtractFilePath(Application.ExeName)+'\TraducaoDev2.ini') then {Verifica se existe o arquivo dentro da pasta}
+  begin
+    cxLocalizer.LoadFromFile(ExtractFilePath(Application.ExeName)+'\TraducaoDev2.ini');
+    cxLocalizer.LanguageIndex := 1; {Muda o idioma / linguagem}
+    cxLocalizer.Active := TRUE;     {Ativa o componente / a tradução}
+   end;
+end;
+
 procedure TFrmPrincipal.FormKeyPress(Sender: TObject; var Key: Char);
 begin
   if Key = #13 then
@@ -331,7 +345,17 @@ procedure TFrmPrincipal.FormKeyUp(Sender: TObject; var Key: Word;
 begin
   if Key = VK_F3 then
   begin
-    ShowMessage('aaaaaa');
+    try
+      Busca := TFrmBusca.Create(Self);
+      Busca.ShowModal;
+      if Busca.ModalResult = mrOk then
+      begin
+        SpnCodigo.Value := Busca.Selecionado();
+        ConsultarCliente;
+      end;
+    finally
+      FreeAndNil(Busca);
+    end;
   end;
 
 end;
@@ -365,6 +389,14 @@ begin
     LimiteCredito             := StrToFloat(ClcLimiteCredito.Text);
   end;
   Result := Cliente;
+end;
+
+procedure TFrmPrincipal.HabilitarForm(Value: Boolean);
+begin
+  GbxPF.Enabled := Value;
+  GbxPJ.Enabled := Value;
+  GbxEndereco.Enabled := Value;
+  GbxFinanceiro.Enabled := Value;
 end;
 
 procedure TFrmPrincipal.ResetarForm;

@@ -36,10 +36,10 @@ type
     BtnCancelar: TcxButton;
     BtnRelatorio: TcxButton;
     Panel2: TPanel;
-    cxGroupBox1: TcxGroupBox;
-    cxGroupBox2: TcxGroupBox;
-    cxGroupBox3: TcxGroupBox;
-    cxGroupBox4: TcxGroupBox;
+    GbxPF: TcxGroupBox;
+    GbxPJ: TcxGroupBox;
+    GbxEndereco: TcxGroupBox;
+    GbxFinanceiro: TcxGroupBox;
     EdtNome: TcxTextEdit;
     cxLabel1: TcxLabel;
     MskCPF: TcxMaskEdit;
@@ -91,6 +91,7 @@ type
     procedure AlterarOuInserir;
     procedure ResetarForm;
     procedure Excluir();
+    procedure HabilitarForm(Value: Boolean);
   end;
 
 var
@@ -348,7 +349,8 @@ begin
       Busca.ShowModal;
       if Busca.ModalResult = mrOk then
       begin
-        ShowMessage('teste');
+        SpnCodigo.Value := Busca.Selecionado();
+        ConsultarCliente;
       end;
     finally
       FreeAndNil(Busca);
@@ -386,6 +388,14 @@ begin
     LimiteCredito             := StrToFloat(ClcLimiteCredito.Text);
   end;
   Result := Cliente;
+end;
+
+procedure TFrmPrincipal.HabilitarForm(Value: Boolean);
+begin
+  GbxPF.Enabled := Value;
+  GbxPJ.Enabled := Value;
+  GbxEndereco.Enabled := Value;
+  GbxFinanceiro.Enabled := Value;
 end;
 
 procedure TFrmPrincipal.ResetarForm;

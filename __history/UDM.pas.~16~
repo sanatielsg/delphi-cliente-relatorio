@@ -70,6 +70,8 @@ type
     QryClientescli_dthr_cadastro: TSQLTimeStampField;
     frxRepClientes: TfrxReport;
     frxDBDataset: TfrxDBDataset;
+    ConnT: TFDConnection;
+    DriverLinkT: TFDPhysPgDriverLink;
   private
     { Private declarations }
   public

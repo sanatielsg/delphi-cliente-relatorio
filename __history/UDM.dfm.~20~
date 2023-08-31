@@ -113,7 +113,7 @@ object DM: TDM
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 45169.034249398150000000
-    ReportOptions.LastChange = 45169.607709120370000000
+    ReportOptions.LastChange = 45169.603612175920000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       ''
@@ -227,12 +227,13 @@ object DM: TDM
       object PageHeader1: TfrxPageHeader
         FillType = ftBrush
         Frame.Typ = []
-        Height = 27.102350000000000000
+        Height = 22.677180000000000000
         Top = 68.031540000000000000
         Width = 1046.929810000000000000
         object Memo2: TfrxMemoView
           AllowVectorExport = True
           Left = -3.779530000000000000
+          Top = 30.236240000000000000
           Width = 1046.929133860000000000
           Height = 22.677180000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -247,7 +248,6 @@ object DM: TDM
         end
         object Memo3: TfrxMemoView
           AllowVectorExport = True
-          Top = 4.425170000000000000
           Width = 62.476589400000000000
           Height = 22.677180000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -264,8 +264,7 @@ object DM: TDM
         object Memo4: TfrxMemoView
           AllowVectorExport = True
           Left = 63.256119400000000000
-          Top = 4.204700000000000000
-          Width = 335.021627760000000000
+          Width = 229.194787760000000000
           Height = 22.677180000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -280,8 +279,7 @@ object DM: TDM
         end
         object Memo5: TfrxMemoView
           AllowVectorExport = True
-          Left = 518.443177160000000000
-          Top = 4.204700000000000000
+          Left = 412.616337160000000000
           Width = 109.087584470000000000
           Height = 22.677180000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -298,7 +296,6 @@ object DM: TDM
         object Memo7: TfrxMemoView
           AllowVectorExport = True
           Left = 911.788127150000000000
-          Top = 4.204700000000000000
           Width = 126.673833410000000000
           Height = 22.677180000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -314,9 +311,8 @@ object DM: TDM
         end
         object Memo15: TfrxMemoView
           AllowVectorExport = True
-          Left = 626.879535430000000000
-          Top = 4.204700000000000000
-          Width = 283.848111990000000000
+          Left = 524.832225430000000000
+          Width = 351.879651990000000000
           Height = 22.677180000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -331,8 +327,7 @@ object DM: TDM
         end
         object Memo16: TfrxMemoView
           AllowVectorExport = True
-          Left = 396.711567420000000000
-          Top = 4.204700000000000000
+          Left = 290.884727420000000000
           Width = 120.490565280000000000
           Height = 22.677180000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -351,7 +346,7 @@ object DM: TDM
         FillType = ftBrush
         Frame.Typ = []
         Height = 18.897650000000000000
-        Top = 154.960730000000000000
+        Top = 151.181200000000000000
         Width = 1046.929810000000000000
         DataSet = frxDBDataset
         DataSetName = 'frxDBDataset'
@@ -377,7 +372,7 @@ object DM: TDM
         object Memo19: TfrxMemoView
           AllowVectorExport = True
           Left = 62.476589400000000000
-          Width = 331.242097760000000000
+          Width = 229.194787760000000000
           Height = 18.897650000000000000
           DataField = 'cli_nome'
           DataSet = frxDBDataset
@@ -395,7 +390,7 @@ object DM: TDM
         end
         object Memo20: TfrxMemoView
           AllowVectorExport = True
-          Left = 518.443177160000000000
+          Left = 412.616337160000000000
           Width = 109.087584470000000000
           Height = 18.897650000000000000
           DataField = 'cli_cpf'
@@ -433,8 +428,8 @@ object DM: TDM
         end
         object Memo30: TfrxMemoView
           AllowVectorExport = True
-          Left = 626.879535430000000000
-          Width = 283.848111990000000000
+          Left = 524.832225430000000000
+          Width = 351.879651990000000000
           Height = 18.897650000000000000
           DataField = 'cli_nome_fantasia'
           DataSet = frxDBDataset
@@ -452,7 +447,7 @@ object DM: TDM
         end
         object Memo31: TfrxMemoView
           AllowVectorExport = True
-          Left = 395.152507420000000000
+          Left = 290.884727420000000000
           Width = 120.490565280000000000
           Height = 18.897650000000000000
           DataField = 'cli_data_nascimento'
@@ -474,7 +469,7 @@ object DM: TDM
         FillType = ftBrush
         Frame.Typ = []
         Height = 26.456710000000000000
-        Top = 234.330860000000000000
+        Top = 230.551330000000000000
         Width = 1046.929810000000000000
         object Memo33: TfrxMemoView
           Align = baWidth
