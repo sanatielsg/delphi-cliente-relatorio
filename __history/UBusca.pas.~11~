@@ -33,21 +33,6 @@ type
     cxGridLevel: TcxGridLevel;
     cxGrid: TcxGrid;
     BtnSelecionar: TcxButton;
-    cxGridDBTableViewcli_codigo: TcxGridDBColumn;
-    cxGridDBTableViewcli_nome: TcxGridDBColumn;
-    cxGridDBTableViewcli_cpf: TcxGridDBColumn;
-    cxGridDBTableViewcli_rg: TcxGridDBColumn;
-    cxGridDBTableViewcli_cnpj: TcxGridDBColumn;
-    cxGridDBTableViewcli_endereco: TcxGridDBColumn;
-    cxGridDBTableViewcli_numero: TcxGridDBColumn;
-    cxGridDBTableViewcli_cep: TcxGridDBColumn;
-    cxGridDBTableViewcli_cidade: TcxGridDBColumn;
-    cxGridDBTableViewcli_uf: TcxGridDBColumn;
-    cxGridDBTableViewcli_limite_credito: TcxGridDBColumn;
-    cxGridDBTableViewcli_razao_social: TcxGridDBColumn;
-    cxGridDBTableViewcli_nome_fantasia: TcxGridDBColumn;
-    cxGridDBTableViewcli_data_nascimento: TcxGridDBColumn;
-    cxGridDBTableViewcli_dthr_cadastro: TcxGridDBColumn;
     procedure BtnSelecionarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private

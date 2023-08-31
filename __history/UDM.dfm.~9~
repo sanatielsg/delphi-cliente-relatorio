@@ -11,13 +11,13 @@ object DM: TDM
     Top = 56
   end
   object DriverLink: TFDPhysPgDriverLink
-    Left = 96
-    Top = 56
+    Left = 40
+    Top = 128
   end
   object Query: TFDQuery
     Connection = Conn
-    Left = 152
-    Top = 136
+    Left = 168
+    Top = 104
   end
   object QryClientes: TFDQuery
     Connection = Conn
@@ -822,21 +822,5 @@ object DM: TDM
     BCDToCurrency = False
     Left = 400
     Top = 264
-  end
-  object ConnT: TFDConnection
-    Params.Strings = (
-      'Database=programa'
-      'User_Name=postgres'
-      'Password=Super@321'
-      'DriverID=PG')
-    LoginPrompt = False
-    Left = 40
-    Top = 280
-  end
-  object DriverLinkT: TFDPhysPgDriverLink
-    VendorHome = 'C:\Program Files (x86)\PostgreSQL\9.6'
-    VendorLib = 'libpq.dll'
-    Left = 104
-    Top = 280
   end
 end

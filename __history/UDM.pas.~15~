@@ -48,8 +48,8 @@ type
   end;
 
   TDM = class(TDataModule)
-    Conn: TFDConnection;
-    DriverLink: TFDPhysPgDriverLink;
+    Conn1: TFDConnection;
+    DriverLink1: TFDPhysPgDriverLink;
     Query: TFDQuery;
     QryClientes: TFDQuery;
     DSClientes: TDataSource;
@@ -70,8 +70,8 @@ type
     QryClientescli_dthr_cadastro: TSQLTimeStampField;
     frxRepClientes: TfrxReport;
     frxDBDataset: TfrxDBDataset;
-    ConnT: TFDConnection;
-    DriverLinkT: TFDPhysPgDriverLink;
+    Conn: TFDConnection;
+    DriverLink: TFDPhysPgDriverLink;
   private
     { Private declarations }
   public

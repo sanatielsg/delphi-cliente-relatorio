@@ -23,7 +23,7 @@ uses
   dxSkinXmas2008Blue, dxSkinscxPCPainter, cxCustomData, cxFilter, cxData,
   cxDataStorage, cxEdit, cxNavigator, Data.DB, cxDBData, cxGridLevel, cxClasses,
   cxGridCustomView, cxGridCustomTableView, cxGridTableView, cxGridDBTableView,
-  cxGrid, Vcl.Menus, Vcl.StdCtrls, cxButtons, UDM;
+  cxGrid, Vcl.Menus, Vcl.StdCtrls, cxButtons;
 
 type
   TFrmBusca = class(TForm)
@@ -33,28 +33,11 @@ type
     cxGridLevel: TcxGridLevel;
     cxGrid: TcxGrid;
     BtnSelecionar: TcxButton;
-    cxGridDBTableViewcli_codigo: TcxGridDBColumn;
-    cxGridDBTableViewcli_nome: TcxGridDBColumn;
-    cxGridDBTableViewcli_cpf: TcxGridDBColumn;
-    cxGridDBTableViewcli_rg: TcxGridDBColumn;
-    cxGridDBTableViewcli_cnpj: TcxGridDBColumn;
-    cxGridDBTableViewcli_endereco: TcxGridDBColumn;
-    cxGridDBTableViewcli_numero: TcxGridDBColumn;
-    cxGridDBTableViewcli_cep: TcxGridDBColumn;
-    cxGridDBTableViewcli_cidade: TcxGridDBColumn;
-    cxGridDBTableViewcli_uf: TcxGridDBColumn;
-    cxGridDBTableViewcli_limite_credito: TcxGridDBColumn;
-    cxGridDBTableViewcli_razao_social: TcxGridDBColumn;
-    cxGridDBTableViewcli_nome_fantasia: TcxGridDBColumn;
-    cxGridDBTableViewcli_data_nascimento: TcxGridDBColumn;
-    cxGridDBTableViewcli_dthr_cadastro: TcxGridDBColumn;
     procedure BtnSelecionarClick(Sender: TObject);
-    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
-    function Selecionado(): Integer;
   end;
 
 var
@@ -66,23 +49,7 @@ implementation
 
 procedure TFrmBusca.BtnSelecionarClick(Sender: TObject);
 begin
-  if Selecionado > 0 then
-    ModalResult := mrOk;
-end;
-
-procedure TFrmBusca.FormShow(Sender: TObject);
-begin
-  DM.QryClientes.Close;
-  DM.QryClientes.Open();
-end;
-
-function TFrmBusca.Selecionado: Integer;
-  var Db : TcxGridDBTableView;
-begin
-  Result := 0;
-  Db :=  cxGridDBTableView;
-  if Db.DataController.RecordCount > 0 then
-    Result := Db.DataController.Values[DB.DataController.FocusedRecordIndex, 0];
+  ModalResult := mrOk;
 end;
 
 end.

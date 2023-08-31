@@ -19,9 +19,10 @@ object FrmBusca: TFrmBusca
     Left = 0
     Top = 0
     Width = 631
-    Height = 33
+    Height = 73
     Align = alTop
     TabOrder = 0
+    ExplicitTop = -6
   end
   object Panel2: TPanel
     Left = 0
@@ -42,82 +43,60 @@ object FrmBusca: TFrmBusca
   end
   object cxGrid: TcxGrid
     Left = 0
-    Top = 33
+    Top = 73
     Width = 631
-    Height = 259
+    Height = 219
     Align = alClient
     TabOrder = 2
-    ExplicitTop = 73
-    ExplicitHeight = 219
     object cxGridDBTableView: TcxGridDBTableView
       Navigator.Buttons.CustomButtons = <>
       DataController.DataSource = DM.DSClientes
       DataController.Summary.DefaultGroupSummaryItems = <>
       DataController.Summary.FooterSummaryItems = <>
       DataController.Summary.SummaryGroups = <>
-      OptionsData.CancelOnExit = False
-      OptionsData.Deleting = False
-      OptionsData.DeletingConfirmation = False
-      OptionsData.Editing = False
-      OptionsData.Inserting = False
       object cxGridDBTableViewcli_codigo: TcxGridDBColumn
-        Caption = 'C'#243'digo'
         DataBinding.FieldName = 'cli_codigo'
       end
       object cxGridDBTableViewcli_nome: TcxGridDBColumn
-        Caption = 'Nome Completo'
         DataBinding.FieldName = 'cli_nome'
       end
       object cxGridDBTableViewcli_cpf: TcxGridDBColumn
-        Caption = 'CPF'
         DataBinding.FieldName = 'cli_cpf'
       end
       object cxGridDBTableViewcli_rg: TcxGridDBColumn
-        Caption = 'RG'
         DataBinding.FieldName = 'cli_rg'
       end
       object cxGridDBTableViewcli_cnpj: TcxGridDBColumn
-        Caption = 'CNPJ'
         DataBinding.FieldName = 'cli_cnpj'
       end
       object cxGridDBTableViewcli_endereco: TcxGridDBColumn
-        Caption = 'Endere'#231'o'
         DataBinding.FieldName = 'cli_endereco'
       end
       object cxGridDBTableViewcli_numero: TcxGridDBColumn
-        Caption = 'N'#250'mero'
         DataBinding.FieldName = 'cli_numero'
       end
       object cxGridDBTableViewcli_cep: TcxGridDBColumn
-        Caption = 'CEP'
         DataBinding.FieldName = 'cli_cep'
       end
       object cxGridDBTableViewcli_cidade: TcxGridDBColumn
-        Caption = 'Cidade'
         DataBinding.FieldName = 'cli_cidade'
       end
       object cxGridDBTableViewcli_uf: TcxGridDBColumn
-        Caption = 'UF'
         DataBinding.FieldName = 'cli_uf'
       end
       object cxGridDBTableViewcli_limite_credito: TcxGridDBColumn
-        Caption = 'Limite Cr'#233'dito'
         DataBinding.FieldName = 'cli_limite_credito'
       end
       object cxGridDBTableViewcli_razao_social: TcxGridDBColumn
-        Caption = 'Raz'#227'o Social'
         DataBinding.FieldName = 'cli_razao_social'
       end
       object cxGridDBTableViewcli_nome_fantasia: TcxGridDBColumn
-        Caption = 'Nome Fantasia'
         DataBinding.FieldName = 'cli_nome_fantasia'
       end
       object cxGridDBTableViewcli_data_nascimento: TcxGridDBColumn
-        Caption = 'Data Nascimento'
         DataBinding.FieldName = 'cli_data_nascimento'
       end
       object cxGridDBTableViewcli_dthr_cadastro: TcxGridDBColumn
-        Caption = 'Data/Hora Cadastro'
         DataBinding.FieldName = 'cli_dthr_cadastro'
       end
     end

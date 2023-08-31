@@ -348,8 +348,7 @@ begin
       Busca.ShowModal;
       if Busca.ModalResult = mrOk then
       begin
-        //alterar aqui
-        SpnCodigo.Value := 3;
+        SpnCodigo.Value := Busca.Selecionado();
         ConsultarCliente;
       end;
     finally

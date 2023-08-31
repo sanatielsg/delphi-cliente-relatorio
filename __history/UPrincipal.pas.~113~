@@ -24,7 +24,7 @@ uses
   dxSkinsForm, cxControls, cxContainer, cxEdit, cxGroupBox, cxMaskEdit, cxLabel,
   cxTextEdit, cxDropDownEdit, cxCalc, Vcl.ComCtrls, dxCore, cxDateUtils,
   cxCalendar,
-  System.IniFiles, cxSpinEdit, cxDBEdit, UDM, UUtil
+  System.IniFiles, cxSpinEdit, cxDBEdit, UDM, UUtil , UBusca, cxLocalization
   ;
 
 type
@@ -35,7 +35,6 @@ type
     BtnExcluir: TcxButton;
     BtnCancelar: TcxButton;
     BtnRelatorio: TcxButton;
-    BtnPesquisa: TcxButton;
     Panel2: TPanel;
     cxGroupBox1: TcxGroupBox;
     cxGroupBox2: TcxGroupBox;
@@ -68,6 +67,7 @@ type
     DteNascimento: TcxDateEdit;
     cxLabel13: TcxLabel;
     SpnCodigo: TcxSpinEdit;
+    cxLocalizer: TcxLocalizer;
     procedure FormShow(Sender: TObject);
     procedure BtnNovoClick(Sender: TObject);
     procedure BtnAlterarClick(Sender: TObject);
@@ -77,6 +77,8 @@ type
     procedure SpnCodigoEnter(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure BtnRelatorioClick(Sender: TObject);
+    procedure FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -94,6 +96,7 @@ type
 var
   FrmPrincipal: TFrmPrincipal;
   Config : TIniFile;
+  Busca : TFrmBusca;
 
 const
   ESTADO_NOVO      = 1;
@@ -316,6 +319,16 @@ begin
   BtnCancelarClick(Self);
 end;
 
+procedure TFrmPrincipal.FormCreate(Sender: TObject);
+begin
+  if FileExists(ExtractFilePath(Application.ExeName)+'\TraducaoDev2.ini') then {Verifica se existe o arquivo dentro da pasta}
+  begin
+    cxLocalizer.LoadFromFile(ExtractFilePath(Application.ExeName)+'\TraducaoDev2.ini');
+    cxLocalizer.LanguageIndex := 1; {Muda o idioma / linguagem}
+    cxLocalizer.Active := TRUE;     {Ativa o componente / a tradução}
+   end;
+end;
+
 procedure TFrmPrincipal.FormKeyPress(Sender: TObject; var Key: Char);
 begin
   if Key = #13 then
@@ -323,6 +336,27 @@ begin
     Key := #0;
     Perform(WM_NEXTDLGCTL, 0, 0);
   end;
+end;
+
+procedure TFrmPrincipal.FormKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if Key = VK_F3 then
+  begin
+    try
+      Busca := TFrmBusca.Create(Self);
+      Busca.ShowModal;
+      if Busca.ModalResult = mrOk then
+      begin
+        //alterar aqui
+        SpnCodigo.Value := Busca.Selecionado();
+        ConsultarCliente;
+      end;
+    finally
+      FreeAndNil(Busca);
+    end;
+  end;
+
 end;
 
 procedure TFrmPrincipal.FormShow(Sender: TObject);

@@ -2,7 +2,7 @@ object DM: TDM
   OldCreateOrder = False
   Height = 380
   Width = 627
-  object Conn: TFDConnection
+  object Conn1: TFDConnection
     Params.Strings = (
       'Port='
       'DriverID=PG')
@@ -10,7 +10,7 @@ object DM: TDM
     Left = 40
     Top = 56
   end
-  object DriverLink: TFDPhysPgDriverLink
+  object DriverLink1: TFDPhysPgDriverLink
     Left = 96
     Top = 56
   end
@@ -823,7 +823,7 @@ object DM: TDM
     Left = 400
     Top = 264
   end
-  object ConnT: TFDConnection
+  object Conn: TFDConnection
     Params.Strings = (
       'Database=programa'
       'User_Name=postgres'
@@ -833,7 +833,7 @@ object DM: TDM
     Left = 40
     Top = 280
   end
-  object DriverLinkT: TFDPhysPgDriverLink
+  object DriverLink: TFDPhysPgDriverLink
     VendorHome = 'C:\Program Files (x86)\PostgreSQL\9.6'
     VendorLib = 'libpq.dll'
     Left = 104

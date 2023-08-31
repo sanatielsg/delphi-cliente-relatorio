@@ -15,12 +15,12 @@ object DM: TDM
     Top = 56
   end
   object Query: TFDQuery
-    Connection = Conn
+    Connection = ConnT
     Left = 152
     Top = 136
   end
   object QryClientes: TFDQuery
-    Connection = Conn
+    Connection = ConnT
     SQL.Strings = (
       'select * from cliente order by cli_codigo')
     Left = 248
