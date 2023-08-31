@@ -102,6 +102,7 @@ object FrmPrincipal: TFrmPrincipal
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+      OnClick = BtnRelatorioClick
     end
     object BtnPesquisa: TcxButton
       Left = 562

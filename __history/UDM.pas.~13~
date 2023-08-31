@@ -8,7 +8,7 @@ uses
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.VCLUI.Wait,
   FireDAC.Phys.PGDef, FireDAC.Phys.PG, Data.DB, FireDAC.Comp.Client,
   FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
-  FireDAC.Comp.DataSet, frxClass, frxDBSet;
+  FireDAC.Comp.DataSet;
 
 type
 
@@ -51,6 +51,8 @@ type
     Conn: TFDConnection;
     DriverLink: TFDPhysPgDriverLink;
     Query: TFDQuery;
+    QryAniversariantes: TFDQuery;
+    DSAniversariantes: TDataSource;
     QryClientes: TFDQuery;
     DSClientes: TDataSource;
     QryClientescli_codigo: TIntegerField;
@@ -68,8 +70,6 @@ type
     QryClientescli_nome_fantasia: TWideStringField;
     QryClientescli_data_nascimento: TDateField;
     QryClientescli_dthr_cadastro: TSQLTimeStampField;
-    frxRepClientes: TfrxReport;
-    frxDBDataset: TfrxDBDataset;
   private
     { Private declarations }
   public

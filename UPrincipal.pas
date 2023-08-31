@@ -76,6 +76,7 @@ type
     procedure SpnCodigoExit(Sender: TObject);
     procedure SpnCodigoEnter(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure BtnRelatorioClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -170,6 +171,13 @@ procedure TFrmPrincipal.BtnNovoClick(Sender: TObject);
 begin
   EstadoBotoes(ESTADO_NOVO);
   EdtNome.SetFocus;
+end;
+
+procedure TFrmPrincipal.BtnRelatorioClick(Sender: TObject);
+begin
+  DM.QryClientes.Close;
+  DM.QryClientes.Open;
+  DM.frxRepClientes.ShowReport(True);
 end;
 
 function TFrmPrincipal.ClienteToForm(Value : TCliente): Boolean;

@@ -18,12 +18,22 @@ object DM: TDM
     Left = 168
     Top = 104
   end
+  object QryAniversariantes: TFDQuery
+    Connection = Conn
+    Left = 216
+    Top = 200
+  end
+  object DSAniversariantes: TDataSource
+    DataSet = QryAniversariantes
+    Left = 216
+    Top = 256
+  end
   object QryClientes: TFDQuery
     Connection = Conn
     SQL.Strings = (
       'select * from cliente')
-    Left = 248
-    Top = 192
+    Left = 320
+    Top = 200
     object QryClientescli_codigo: TIntegerField
       FieldName = 'cli_codigo'
       Origin = 'cli_codigo'
@@ -100,38 +110,7 @@ object DM: TDM
   end
   object DSClientes: TDataSource
     DataSet = QryClientes
-    Left = 256
-    Top = 256
-  end
-  object frxRepClientes: TfrxReport
-    Version = '6.7.9'
-    DataSet = frxDBDataset
-    DataSetName = 'frxDBDataset'
-    DotMatrixReport = False
-    IniFile = '\Software\Fast Reports'
-    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick, pbCopy, pbSelection]
-    PreviewOptions.Zoom = 1.000000000000000000
-    PrintOptions.Printer = 'Default'
-    PrintOptions.PrintOnSheet = 0
-    ReportOptions.CreateDate = 45169.030320011570000000
-    ReportOptions.LastChange = 45169.030320011570000000
-    ScriptLanguage = 'PascalScript'
-    ScriptText.Strings = (
-      'begin'
-      ''
-      'end.')
-    Left = 400
-    Top = 200
-    Datasets = <>
-    Variables = <>
-    Style = <>
-  end
-  object frxDBDataset: TfrxDBDataset
-    UserName = 'frxDBDataset'
-    CloseDataSource = False
-    DataSet = QryClientes
-    BCDToCurrency = False
-    Left = 400
+    Left = 328
     Top = 264
   end
 end
